@@ -131,6 +131,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_Currency__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/Currency */ "./api/Currency.js");
 /* harmony import */ var _configs_CountryCodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../configs/CountryCodes */ "./configs/CountryCodes.js");
+/* harmony import */ var _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../configs/CurrencySelector */ "./configs/CurrencySelector.js");
+/* harmony import */ var _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_autocomplete__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-autocomplete */ "react-autocomplete");
+/* harmony import */ var react_autocomplete__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_autocomplete__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/home/hazard/Code/interactive-currency-converter/components/ConverterForm.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -143,17 +147,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
+
+
+
+
+function matchCurrencyToTerm(currency, value) {
+  return currency.CurrencyCode.toLowerCase().indexOf(value.toLowerCase()) !== -1 || currency.CurrencyName.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+}
 
 var ConverterForm =
 /*#__PURE__*/
@@ -161,102 +173,114 @@ function (_Component) {
   _inherits(ConverterForm, _Component);
 
   function ConverterForm() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, ConverterForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ConverterForm).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ConverterForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      value: 'AUD'
+    });
+
+    return _this;
   }
 
   _createClass(ConverterForm, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// Currency()
+    value: function componentDidMount() {
+      // Currency()
       // console.log(CountryCodes)
+      console.log(_configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_3___default.a.currency_list);
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var value = this.state.value;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 13
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14
-        },
-        __self: this
-      }, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 18
-        },
-        __self: this
-      }, "Convert from:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 20
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "grapefruit",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        },
-        __self: this
-      }, "Grapefruit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "lime",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 22
-        },
-        __self: this
-      }, "Lime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        selected: true,
-        value: "coconut",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
-        },
-        __self: this
-      }, "Coconut"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "mango",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
-        },
-        __self: this
-      }, "Mango"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 27
         },
         __self: this
-      }, "Convert to:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 28
+        },
+        __self: this
+      }, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_autocomplete__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        getItemValue: function getItemValue(item) {
+          return item.CurrencyCode;
+        },
+        items: _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_3___default.a.currency_list,
+        renderItem: function renderItem(item, isHighlighted) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            style: {
+              background: isHighlighted ? 'lightgray' : 'black'
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 35
+            },
+            __self: this
+          }, item.CurrencyCode);
+        },
+        shouldItemRender: matchCurrencyToTerm,
+        value: value,
+        onChange: function onChange(event, value) {
+          return _this2.setState({
+            value: value
+          });
+        },
+        onSelect: function onSelect(value) {
+          return _this2.setState({
+            value: value
+          });
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 31
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 44
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        },
+        __self: this
+      }, "Convert from:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "grapefruit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 48
         },
         __self: this
       }, "Grapefruit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "lime",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 49
         },
         __self: this
       }, "Lime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -264,14 +288,55 @@ function (_Component) {
         value: "coconut",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 50
         },
         __self: this
       }, "Coconut"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "mango",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 51
+        },
+        __self: this
+      }, "Mango"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 54
+        },
+        __self: this
+      }, "Convert to:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "grapefruit",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        },
+        __self: this
+      }, "Grapefruit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "lime",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58
+        },
+        __self: this
+      }, "Lime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        selected: true,
+        value: "coconut",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59
+        },
+        __self: this
+      }, "Coconut"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "mango",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60
         },
         __self: this
       }, "Mango"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -279,7 +344,7 @@ function (_Component) {
         value: "Submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 63
         },
         __self: this
       })));
@@ -380,6 +445,791 @@ var _jsxFileName="/home/hazard/Code/interactive-currency-converter/components/Wo
 __webpack_require__.r(__webpack_exports__);
 var raw_codes = "AD,AE,AF,AG,AI,AL,AM,AO,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BN,BO,BM,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EG,EE,EH,ER,ES,ET,FI,FJ,FK,FM,FO,FR,GA,GB,GE,GD,GF,GG,GH,GI,GL,GM,GN,GO,GP,GQ,GR,GS,GT,GU,GW,GY,HK,HM,HN,HR,HT,HU,ID,IE,IL,IM,IN,IO,IQ,IR,IS,IT,JE,JM,JO,JP,JU,KE,KG,KH,KI,KM,KN,KP,KR,XK,KW,KY,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,MG,ME,MF,MH,MK,ML,MO,MM,MN,MP,MQ,MR,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NC,NE,NF,NG,NI,NL,NO,NP,NR,NU,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PM,PN,PR,PS,PT,PW,PY,QA,RE,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SH,SI,SJ,SK,SL,SM,SN,SO,SR,SS,ST,SV,SX,SY,SZ,TC,TD,TF,TG,TH,TJ,TK,TL,TM,TN,TO,TR,TT,TV,TW,TZ,UA,UG,DQ,FQ,HQ,JQ,MQ,WQ,US,UY,UZ,VA,VC,VE,VG,VI,VN,VU,WF,WS,YE,YT,ZA,ZM,ZW";
 /* harmony default export */ __webpack_exports__["default"] = (raw_codes.split(','));
+
+/***/ }),
+
+/***/ "./configs/CurrencySelector.js":
+/*!*************************************!*\
+  !*** ./configs/CurrencySelector.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var all_currency = [{
+  "CurrencyCode": "AED",
+  "CurrencyName": "United Arab Emirates Dirham",
+  "CountriesUsing": ["United Arab Emirates"],
+  "CountryCodes": ["AE"]
+}, {
+  "CurrencyCode": "AFN",
+  "CurrencyName": "Afghan Afghani",
+  "CountriesUsing": ["Afghanistan"],
+  "CountryCodes": ["AF"]
+}, {
+  "CurrencyCode": "ALL",
+  "CurrencyName": "Albanian Lek",
+  "CountriesUsing": ["Albania"],
+  "CountryCodes": ["AL"]
+}, {
+  "CurrencyCode": "AMD",
+  "CurrencyName": "Armenian Dram",
+  "CountriesUsing": ["Armenia"],
+  "CountryCodes": ["AM"]
+}, {
+  "CurrencyCode": "ANG",
+  "CurrencyName": "Netherlands Antillean Guilder",
+  "CountriesUsing": ["Curaao"],
+  "CountryCodes": ["CW"]
+}, {
+  "CurrencyCode": "AOA",
+  "CurrencyName": "Angolan Kwanza",
+  "CountriesUsing": ["Angola"],
+  "CountryCodes": ["AO"]
+}, {
+  "CurrencyCode": "ARS",
+  "CurrencyName": "Argentine Peso",
+  "CountriesUsing": ["Argentina"],
+  "CountryCodes": ["AR"]
+}, {
+  "CurrencyCode": "AUD",
+  "CurrencyName": "Australian Dollar",
+  "CountriesUsing": ["Australia", "Nauru", "Cocos  Keeling  Islands", "Heard Island and McDonald Islands"],
+  "CountryCodes": ["AU", "NR", "CC", "HM"]
+}, {
+  "CurrencyCode": "AWG",
+  "CurrencyName": "Aruban Florin",
+  "CountriesUsing": ["Aruba"],
+  "CountryCodes": ["AW"]
+}, {
+  "CurrencyCode": "AZN",
+  "CurrencyName": "Azerbaijani Manat",
+  "CountriesUsing": ["Azerbaijan"],
+  "CountryCodes": ["AZ"]
+}, {
+  "CurrencyCode": "BAM",
+  "CurrencyName": "Bosnia-Herzegovina Convertible Mark",
+  "CountriesUsing": ["Bosnia and Herzegovina"],
+  "CountryCodes": ["BA"]
+}, {
+  "CurrencyCode": "BBD",
+  "CurrencyName": "Barbadian Dollar",
+  "CountriesUsing": ["Barbados"],
+  "CountryCodes": ["BB"]
+}, {
+  "CurrencyCode": "BDT",
+  "CurrencyName": "Bangladeshi Taka",
+  "CountriesUsing": ["Bangladesh"],
+  "CountryCodes": ["BD"]
+}, {
+  "CurrencyCode": "BGN",
+  "CurrencyName": "Bulgarian Lev",
+  "CountriesUsing": ["Bulgaria"],
+  "CountryCodes": ["BG"]
+}, {
+  "CurrencyCode": "BHD",
+  "CurrencyName": "Bahraini Dinar",
+  "CountriesUsing": ["Bahrain"],
+  "CountryCodes": ["BH"]
+}, {
+  "CurrencyCode": "BIF",
+  "CurrencyName": "Burundian Franc",
+  "CountriesUsing": ["Burundi"],
+  "CountryCodes": ["BI"]
+}, {
+  "CurrencyCode": "BMD",
+  "CurrencyName": "Bermudan Dollar",
+  "CountriesUsing": ["Bermuda"],
+  "CountryCodes": ["BM"]
+}, {
+  "CurrencyCode": "BND",
+  "CurrencyName": "Brunei Dollar",
+  "CountriesUsing": ["Brunei Darussalam"],
+  "CountryCodes": ["BN"]
+}, {
+  "CurrencyCode": "BOB",
+  "CurrencyName": "Bolivian Boliviano",
+  "CountriesUsing": ["Bolivia"],
+  "CountryCodes": ["BO"]
+}, {
+  "CurrencyCode": "BRL",
+  "CurrencyName": "Brazilian Real",
+  "CountriesUsing": ["Brazil"],
+  "CountryCodes": ["BR"]
+}, {
+  "CurrencyCode": "BSD",
+  "CurrencyName": "Bahamian Dollar",
+  "CountriesUsing": ["Bahamas"],
+  "CountryCodes": ["BS"]
+}, {
+  "CurrencyCode": "BTN",
+  "CurrencyName": "Bhutanese Ngultrum",
+  "CountriesUsing": ["Bhutan"],
+  "CountryCodes": ["BT"]
+}, {
+  "CurrencyCode": "BWP",
+  "CurrencyName": "Botswanan Pula",
+  "CountriesUsing": ["Botswana"],
+  "CountryCodes": ["BW"]
+}, {
+  "CurrencyCode": "BYN",
+  "CurrencyName": "Belarusian Ruble",
+  "CountriesUsing": ["Belarus"],
+  "CountryCodes": ["BY"]
+}, {
+  "CurrencyCode": "BZD",
+  "CurrencyName": "Belize Dollar",
+  "CountriesUsing": ["Belize"],
+  "CountryCodes": ["BZ"]
+}, {
+  "CurrencyCode": "CAD",
+  "CurrencyName": "Canadian Dollar",
+  "CountriesUsing": ["Canada"],
+  "CountryCodes": ["CA"]
+}, {
+  "CurrencyCode": "CDF",
+  "CurrencyName": "Congolese Franc",
+  "CountriesUsing": ["Democratic Republic of Congo", "Republic of Congo"],
+  "CountryCodes": ["CD", "CG"]
+}, {
+  "CurrencyCode": "CHF",
+  "CurrencyName": "Swiss Franc",
+  "CountriesUsing": ["Switzerland", "Liechtenstein"],
+  "CountryCodes": ["CH", "LI"]
+}, {
+  "CurrencyCode": "CLP",
+  "CurrencyName": "Chilean Peso",
+  "CountriesUsing": ["Chile"],
+  "CountryCodes": ["CL"]
+}, {
+  "CurrencyCode": "CNY",
+  "CurrencyName": "Chinese Yuan",
+  "CountriesUsing": ["China"],
+  "CountryCodes": ["CN"]
+}, {
+  "CurrencyCode": "COP",
+  "CurrencyName": "Colombian Peso",
+  "CountriesUsing": ["Colombia"],
+  "CountryCodes": ["CO"]
+}, {
+  "CurrencyCode": "CRC",
+  "CurrencyName": "Costa Rican Colón",
+  "CountriesUsing": ["Costa Rica"],
+  "CountryCodes": ["CR"]
+}, {
+  "CurrencyCode": "CUP",
+  "CurrencyName": "Cuban Peso",
+  "CountriesUsing": ["Cuba"],
+  "CountryCodes": ["CU"]
+}, {
+  "CurrencyCode": "CVE",
+  "CurrencyName": "Cape Verdean Escudo",
+  "CountriesUsing": ["Cape Verde"],
+  "CountryCodes": ["CV"]
+}, {
+  "CurrencyCode": "CZK",
+  "CurrencyName": "Czech Republic Koruna",
+  "CountriesUsing": ["Czech Republic"],
+  "CountryCodes": ["CZ"]
+}, {
+  "CurrencyCode": "DJF",
+  "CurrencyName": "Djiboutian Franc",
+  "CountriesUsing": ["Djibouti"],
+  "CountryCodes": ["DJ"]
+}, {
+  "CurrencyCode": "DKK",
+  "CurrencyName": "Danish Krone",
+  "CountriesUsing": ["Denmark", "Greenland"],
+  "CountryCodes": ["DK", "GL"]
+}, {
+  "CurrencyCode": "DOP",
+  "CurrencyName": "Dominican Peso",
+  "CountriesUsing": ["Dominica", "Dominican Republic"],
+  "CountryCodes": ["DM", "DO"]
+}, {
+  "CurrencyCode": "DZD",
+  "CurrencyName": "Algerian Dinar",
+  "CountriesUsing": ["Algeria"],
+  "CountryCodes": ["DZ"]
+}, {
+  "CurrencyCode": "EGP",
+  "CurrencyName": "Egyptian Pound",
+  "CountriesUsing": ["Egypt"],
+  "CountryCodes": ["EG"]
+}, {
+  "CurrencyCode": "ERN",
+  "CurrencyName": "Eritrean Nakfa",
+  "CountriesUsing": ["Eritrea"],
+  "CountryCodes": ["ER"]
+}, {
+  "CurrencyCode": "ETB",
+  "CurrencyName": "Ethiopian Birr",
+  "CountriesUsing": ["Ethiopia"],
+  "CountryCodes": ["ET"]
+}, {
+  "CurrencyCode": "EUR",
+  "CurrencyName": "Euro",
+  "CountriesUsing": ["Austria", "Belgium", "Cyprus", "Estonia", "Finland", "France", "Germany", "Greece", "Ireland", "Italy", "Lavia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Portugal", "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "Vatican City", "Kosovo", "Montenegro", "San Marino"],
+  "CountryCodes": ["AT", "BE", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES", "AD", "MC", "VA", "XK", "ME", "SM"]
+}, {
+  "CurrencyCode": "FJD",
+  "CurrencyName": "Fijian Dollar",
+  "CountriesUsing": ["Fiji"],
+  "CountryCodes": ["FJ"]
+}, {
+  "CurrencyCode": "FKP",
+  "CurrencyName": "Falkland Islands Pound",
+  "CountriesUsing": ["Falkland Islands"],
+  "CountryCodes": ["FK"]
+}, {
+  "CurrencyCode": "GBP",
+  "CurrencyName": "British Pound Sterling",
+  "CountriesUsing": ["United Kingdom", "Saint Helena", "Gibraltar", "South Georgia and South Sandwich Islands", "British Indian Ocean Territory"],
+  "CountryCodes": ["GB", "SH", "GI", "GS", "IO"]
+}, {
+  "CurrencyCode": "GEL",
+  "CurrencyName": "Georgian Lari",
+  "CountriesUsing": ["Georgia"],
+  "CountryCodes": ["GE"]
+}, {
+  "CurrencyCode": "GHS",
+  "CurrencyName": "Ghanaian Cedi",
+  "CountriesUsing": ["Ghana"],
+  "CountryCodes": ["GH"]
+}, {
+  "CurrencyCode": "GIP",
+  "CurrencyName": "Gibraltar Pound",
+  "CountriesUsing": ["Gibraltar"],
+  "CountryCodes": ["GI"]
+}, {
+  "CurrencyCode": "GMD",
+  "CurrencyName": "Gambian Dalasi",
+  "CountriesUsing": ["Gambia"],
+  "CountryCodes": ["GM"]
+}, {
+  "CurrencyCode": "GNF",
+  "CurrencyName": "Guinean Franc",
+  "CountriesUsing": ["Guinea"],
+  "CountryCodes": ["GN"]
+}, {
+  "CurrencyCode": "GTQ",
+  "CurrencyName": "Guatemalan Quetzal",
+  "CountriesUsing": ["Guatemala"],
+  "CountryCodes": ["GT"]
+}, {
+  "CurrencyCode": "GYD",
+  "CurrencyName": "Guyanaese Dollar",
+  "CountriesUsing": ["Guyana"],
+  "CountryCodes": ["GY"]
+}, {
+  "CurrencyCode": "HKD",
+  "CurrencyName": "Hong Kong Dollar",
+  "CountriesUsing": ["Hong Kong"],
+  "CountryCodes": ["HK"]
+}, {
+  "CurrencyCode": "HNL",
+  "CurrencyName": "Honduran Lempira",
+  "CountriesUsing": ["Honduras"],
+  "CountryCodes": ["HN"]
+}, {
+  "CurrencyCode": "HRK",
+  "CurrencyName": "Croatian Kuna",
+  "CountriesUsing": ["Croatia"],
+  "CountryCodes": ["HR"]
+}, {
+  "CurrencyCode": "HTG",
+  "CurrencyName": "Haitian Gourde",
+  "CountriesUsing": ["Haiti"],
+  "CountryCodes": ["HT"]
+}, {
+  "CurrencyCode": "HUF",
+  "CurrencyName": "Hungarian Forint",
+  "CountriesUsing": ["Hungary"],
+  "CountryCodes": ["HU"]
+}, {
+  "CurrencyCode": "IDR",
+  "CurrencyName": "Indonesian Rupiah",
+  "CountriesUsing": ["Indonesia"],
+  "CountryCodes": ["ID"]
+}, {
+  "CurrencyCode": "ILS",
+  "CurrencyName": "Israeli New Sheqel",
+  "CountriesUsing": ["Israel"],
+  "CountryCodes": ["IL"]
+}, {
+  "CurrencyCode": "INR",
+  "CurrencyName": "Indian Rupee",
+  "CountriesUsing": ["India"],
+  "CountryCodes": ["IN"]
+}, {
+  "CurrencyCode": "IQD",
+  "CurrencyName": "Iraqi Dinar",
+  "CountriesUsing": ["Iraq"],
+  "CountryCodes": ["IQ"]
+}, {
+  "CurrencyCode": "IRR",
+  "CurrencyName": "Iranian Rial",
+  "CountriesUsing": ["Iran"],
+  "CountryCodes": ["IR"]
+}, {
+  "CurrencyCode": "ISK",
+  "CurrencyName": "Icelandic Króna",
+  "CountriesUsing": ["Iceland"],
+  "CountryCodes": ["IS"]
+}, {
+  "CurrencyCode": "JMD",
+  "CurrencyName": "Jamaican Dollar",
+  "CountriesUsing": ["Jamaica"],
+  "CountryCodes": ["JM"]
+}, {
+  "CurrencyCode": "JOD",
+  "CurrencyName": "Jordanian Dinar",
+  "CountriesUsing": ["Jordan"],
+  "CountryCodes": ["JO"]
+}, {
+  "CurrencyCode": "JPY",
+  "CurrencyName": "Japanese Yen",
+  "CountriesUsing": ["Japan"],
+  "CountryCodes": ["JP"]
+}, {
+  "CurrencyCode": "KES",
+  "CurrencyName": "Kenyan Shilling",
+  "CountriesUsing": ["Kenya"],
+  "CountryCodes": ["KE"]
+}, {
+  "CurrencyCode": "KGS",
+  "CurrencyName": "Kyrgystani Som",
+  "CountriesUsing": ["Kyrgyzstan"],
+  "CountryCodes": ["KG"]
+}, {
+  "CurrencyCode": "KHR",
+  "CurrencyName": "Cambodian Riel",
+  "CountriesUsing": ["Cambodia"],
+  "CountryCodes": ["KH"]
+}, {
+  "CurrencyCode": "KMF",
+  "CurrencyName": "Comorian Franc",
+  "CountriesUsing": ["Comoros"],
+  "CountryCodes": ["KM"]
+}, {
+  "CurrencyCode": "KPW",
+  "CurrencyName": "North Korean Won",
+  "CountriesUsing": ["North Korea"],
+  "CountryCodes": ["KP"]
+}, {
+  "CurrencyCode": "KRW",
+  "CurrencyName": "South Korean Won",
+  "CountriesUsing": ["South Korea"],
+  "CountryCodes": ["KR"]
+}, {
+  "CurrencyCode": "KWD",
+  "CurrencyName": "Kuwaiti Dinar",
+  "CountriesUsing": ["Kuwait"],
+  "CountryCodes": ["KW"]
+}, {
+  "CurrencyCode": "KYD",
+  "CurrencyName": "Cayman Islands Dollar",
+  "CountriesUsing": ["Cayman Islands"],
+  "CountryCodes": ["KY"]
+}, {
+  "CurrencyCode": "KZT",
+  "CurrencyName": "Kazakhstani Tenge",
+  "CountriesUsing": ["Kazakhstan"],
+  "CountryCodes": ["KZ"]
+}, {
+  "CurrencyCode": "LAK",
+  "CurrencyName": "Laotian Kip",
+  "CountriesUsing": ["Lao Peoples Democratic Republic"],
+  "CountryCodes": ["LA"]
+}, {
+  "CurrencyCode": "LBP",
+  "CurrencyName": "Lebanese Pound",
+  "CountriesUsing": ["Lebanon"],
+  "CountryCodes": ["LB"]
+}, {
+  "CurrencyCode": "LKR",
+  "CurrencyName": "Sri Lankan Rupee",
+  "CountriesUsing": ["Sri Lanka"],
+  "CountryCodes": ["LK"]
+}, {
+  "CurrencyCode": "LRD",
+  "CurrencyName": "Liberian Dollar",
+  "CountriesUsing": ["Liberia"],
+  "CountryCodes": ["LR"]
+}, {
+  "CurrencyCode": "LTL",
+  "CurrencyName": "Lithuanian Litas",
+  "CountriesUsing": ["Lithuania"],
+  "CountryCodes": ["LT"]
+}, {
+  "CurrencyCode": "LYD",
+  "CurrencyName": "Libyan Dinar",
+  "CountriesUsing": ["Libya"],
+  "CountryCodes": ["LY"]
+}, {
+  "CurrencyCode": "MAD",
+  "CurrencyName": "Moroccan Dirham",
+  "CountriesUsing": ["Morocco"],
+  "CountryCodes": ["MA"]
+}, {
+  "CurrencyCode": "MDL",
+  "CurrencyName": "Moldovan Leu",
+  "CountriesUsing": ["Moldova"],
+  "CountryCodes": ["MD"]
+}, {
+  "CurrencyCode": "MGA",
+  "CurrencyName": "Malagasy Ariary",
+  "CountriesUsing": ["Madagascar"],
+  "CountryCodes": ["MG"]
+}, {
+  "CurrencyCode": "MKD",
+  "CurrencyName": "Macedonian Denar",
+  "CountriesUsing": ["Macedonia"],
+  "CountryCodes": ["MK"]
+}, {
+  "CurrencyCode": "MMK",
+  "CurrencyName": "Myanma Kyat",
+  "CountriesUsing": ["Myanmar"],
+  "CountryCodes": ["MM"]
+}, {
+  "CurrencyCode": "MNT",
+  "CurrencyName": "Mongolian Tugrik",
+  "CountriesUsing": ["Mongolia"],
+  "CountryCodes": ["MN"]
+}, {
+  "CurrencyCode": "MOP",
+  "CurrencyName": "Macanese Pataca",
+  "CountriesUsing": ["Macau"],
+  "CountryCodes": ["MO"]
+}, {
+  "CurrencyCode": "MRO",
+  "CurrencyName": "Mauritanian Ouguiya",
+  "CountriesUsing": ["Mauritania"],
+  "CountryCodes": ["MR"]
+}, {
+  "CurrencyCode": "MUR",
+  "CurrencyName": "Mauritian Rupee",
+  "CountriesUsing": ["Mauritius"],
+  "CountryCodes": ["MU"]
+}, {
+  "CurrencyCode": "MVR",
+  "CurrencyName": "Maldivian Rufiyaa",
+  "CountriesUsing": ["Maldives"],
+  "CountryCodes": ["MV"]
+}, {
+  "CurrencyCode": "MWK",
+  "CurrencyName": "Malawian Kwacha",
+  "CountriesUsing": ["Malawi"],
+  "CountryCodes": ["MW"]
+}, {
+  "CurrencyCode": "MXN",
+  "CurrencyName": "Mexican Peso",
+  "CountriesUsing": ["Mexico"],
+  "CountryCodes": ["MX"]
+}, {
+  "CurrencyCode": "MYR",
+  "CurrencyName": "Malaysian Ringgit",
+  "CountriesUsing": ["Malaysia"],
+  "CountryCodes": ["MY"]
+}, {
+  "CurrencyCode": "MZN",
+  "CurrencyName": "Mozambican Metical",
+  "CountriesUsing": ["Mozambique"],
+  "CountryCodes": ["MZ"]
+}, {
+  "CurrencyCode": "NAD",
+  "CurrencyName": "Namibian Dollar",
+  "CountriesUsing": ["Namibia"],
+  "CountryCodes": ["NA"]
+}, {
+  "CurrencyCode": "NGN",
+  "CurrencyName": "Nigerian Naira",
+  "CountriesUsing": ["Nigeria"],
+  "CountryCodes": ["NG"]
+}, {
+  "CurrencyCode": "NIO",
+  "CurrencyName": "Nicaraguan Córdoba",
+  "CountriesUsing": ["Nicaragua"],
+  "CountryCodes": ["NI"]
+}, {
+  "CurrencyCode": "NOK",
+  "CurrencyName": "Norwegian Krone",
+  "CountriesUsing": ["Norway"],
+  "CountryCodes": ["NO"]
+}, {
+  "CurrencyCode": "NPR",
+  "CurrencyName": "Nepalese Rupee",
+  "CountriesUsing": ["Nepal"],
+  "CountryCodes": ["NP"]
+}, {
+  "CurrencyCode": "NZD",
+  "CurrencyName": "New Zealand Dollar",
+  "CountriesUsing": ["New Zealand"],
+  "CountryCodes": ["NZ"]
+}, {
+  "CurrencyCode": "OMR",
+  "CurrencyName": "Omani Rial",
+  "CountriesUsing": ["Oman"],
+  "CountryCodes": ["OM"]
+}, {
+  "CurrencyCode": "PEN",
+  "CurrencyName": "Peruvian Nuevo Sol",
+  "CountriesUsing": ["Peru"],
+  "CountryCodes": ["PE"]
+}, {
+  "CurrencyCode": "PGK",
+  "CurrencyName": "Papua New Guinean Kina",
+  "CountriesUsing": ["Papua New Guinea"],
+  "CountryCodes": ["PG"]
+}, {
+  "CurrencyCode": "PHP",
+  "CurrencyName": "Philippine Peso",
+  "CountriesUsing": ["Philippines"],
+  "CountryCodes": ["PH"]
+}, {
+  "CurrencyCode": "PKR",
+  "CurrencyName": "Pakistani Rupee",
+  "CountriesUsing": ["Pakistan"],
+  "CountryCodes": ["PK"]
+}, {
+  "CurrencyCode": "PLN",
+  "CurrencyName": "Polish Zloty",
+  "CountriesUsing": ["Poland"],
+  "CountryCodes": ["PL"]
+}, {
+  "CurrencyCode": "PYG",
+  "CurrencyName": "Paraguayan Guarani",
+  "CountriesUsing": ["Paraguay"],
+  "CountryCodes": ["PY"]
+}, {
+  "CurrencyCode": "QAR",
+  "CurrencyName": "Qatari Rial",
+  "CountriesUsing": ["Qatar"],
+  "CountryCodes": ["QA"]
+}, {
+  "CurrencyCode": "RON",
+  "CurrencyName": "Romanian Leu",
+  "CountriesUsing": ["Romania"],
+  "CountryCodes": ["RO"]
+}, {
+  "CurrencyCode": "RSD",
+  "CurrencyName": "Serbian Dinar",
+  "CountriesUsing": ["Serbia"],
+  "CountryCodes": ["RS"]
+}, {
+  "CurrencyCode": "RUB",
+  "CurrencyName": "Russian Ruble",
+  "CountriesUsing": ["Russia"],
+  "CountryCodes": ["RU"]
+}, {
+  "CurrencyCode": "RWF",
+  "CurrencyName": "Rwandan Franc",
+  "CountriesUsing": ["Rwanda"],
+  "CountryCodes": ["RW"]
+}, {
+  "CurrencyCode": "SAR",
+  "CurrencyName": "Saudi Riyal",
+  "CountriesUsing": ["Saudi Arabia"],
+  "CountryCodes": ["SA"]
+}, {
+  "CurrencyCode": "SBD",
+  "CurrencyName": "Solomon Islands Dollar",
+  "CountriesUsing": ["Solomon Islands"],
+  "CountryCodes": ["SB"]
+}, {
+  "CurrencyCode": "SCR",
+  "CurrencyName": "Seychellois Rupee",
+  "CountriesUsing": ["Seychelles"],
+  "CountryCodes": ["SC"]
+}, {
+  "CurrencyCode": "SDG",
+  "CurrencyName": "Sudanese Pound",
+  "CountriesUsing": ["Sudan"],
+  "CountryCodes": ["SD"]
+}, {
+  "CurrencyCode": "SEK",
+  "CurrencyName": "Swedish Krona",
+  "CountriesUsing": ["Sweden"],
+  "CountryCodes": ["SE"]
+}, {
+  "CurrencyCode": "SGD",
+  "CurrencyName": "Singapore Dollar",
+  "CountriesUsing": ["Singapore"],
+  "CountryCodes": ["SG"]
+}, {
+  "CurrencyCode": "SHP",
+  "CurrencyName": "Saint Helena Pound",
+  "CountriesUsing": ["Saint Helena"],
+  "CountryCodes": ["SH"]
+}, {
+  "CurrencyCode": "SLL",
+  "CurrencyName": "Sierra Leonean Leone",
+  "CountriesUsing": ["Sierra Leone"],
+  "CountryCodes": ["SL"]
+}, {
+  "CurrencyCode": "SOS",
+  "CurrencyName": "Somali Shilling",
+  "CountriesUsing": ["Somalia"],
+  "CountryCodes": ["SO"]
+}, {
+  "CurrencyCode": "SRD",
+  "CurrencyName": "Surinamese Dollar",
+  "CountriesUsing": ["Suriname"],
+  "CountryCodes": ["SR"]
+}, {
+  "CurrencyCode": "STD",
+  "CurrencyName": "São Tomé and Príncipe Dobra",
+  "CountriesUsing": ["Sao Tome and Principe"],
+  "CountryCodes": ["ST"]
+}, {
+  "CurrencyCode": "SVC",
+  "CurrencyName": "Salvadoran Colón",
+  "CountriesUsing": ["El Salvador"],
+  "CountryCodes": ["SV"]
+}, {
+  "CurrencyCode": "SYP",
+  "CurrencyName": "Syrian Pound",
+  "CountriesUsing": ["Syria"],
+  "CountryCodes": ["SY"]
+}, {
+  "CurrencyCode": "SZL",
+  "CurrencyName": "Swazi Lilangeni",
+  "CountriesUsing": ["Swaziland"],
+  "CountryCodes": ["SZ"]
+}, {
+  "CurrencyCode": "THB",
+  "CurrencyName": "Thai Baht",
+  "CountriesUsing": ["Thailand"],
+  "CountryCodes": ["TH"]
+}, {
+  "CurrencyCode": "TJS",
+  "CurrencyName": "Tajikistani Somoni",
+  "CountriesUsing": ["Tajikistan"],
+  "CountryCodes": ["TJ"]
+}, {
+  "CurrencyCode": "TMT",
+  "CurrencyName": "Turkmenistani Manat",
+  "CountriesUsing": ["Turkmenistan"],
+  "CountryCodes": ["TM"]
+}, {
+  "CurrencyCode": "TND",
+  "CurrencyName": "Tunisian Dinar",
+  "CountriesUsing": ["Tunisia"],
+  "CountryCodes": ["TN"]
+}, {
+  "CurrencyCode": "TOP",
+  "CurrencyName": "Tongan Paʻanga",
+  "CountriesUsing": ["Tonga"],
+  "CountryCodes": ["TO"]
+}, {
+  "CurrencyCode": "TRY",
+  "CurrencyName": "Turkish Lira",
+  "CountriesUsing": ["Turkey"],
+  "CountryCodes": ["TR"]
+}, {
+  "CurrencyCode": "TTD",
+  "CurrencyName": "Trinidad and Tobago Dollar",
+  "CountriesUsing": ["Trin"],
+  "CountryCodes": ["TT"]
+}, {
+  "CurrencyCode": "TWD",
+  "CurrencyName": "New Taiwan Dollar",
+  "CountriesUsing": ["Taiwan"],
+  "CountryCodes": ["TW"]
+}, {
+  "CurrencyCode": "TZS",
+  "CurrencyName": "Tanzanian Shilling",
+  "CountriesUsing": ["Tanzania"],
+  "CountryCodes": ["TZ"]
+}, {
+  "CurrencyCode": "UAH",
+  "CurrencyName": "Ukrainian Hryvnia",
+  "CountriesUsing": ["Ukraine"],
+  "CountryCodes": ["UA"]
+}, {
+  "CurrencyCode": "UGX",
+  "CurrencyName": "Ugandan Shilling",
+  "CountriesUsing": ["Uganda"],
+  "CountryCodes": ["UG"]
+}, {
+  "CurrencyCode": "USD",
+  "CurrencyName": "United States Dollar",
+  "CountriesUsing": ["United States", "American Samoa", "Ecuador", "Panama", "Puerto Rico"],
+  "CountryCodes": ["US", "AS", "EC", "PA", "PR"]
+}, {
+  "CurrencyCode": "UYU",
+  "CurrencyName": "Uruguayan Peso",
+  "CountriesUsing": ["Uruguay"],
+  "CountryCodes": ["UY"]
+}, {
+  "CurrencyCode": "UZS",
+  "CurrencyName": "Uzbekistan Som",
+  "CountriesUsing": ["Uzbekistan"],
+  "CountryCodes": ["UZ"]
+}, {
+  "CurrencyCode": "VEF",
+  "CurrencyName": "Venezuelan Bolívar Fuerte",
+  "CountriesUsing": ["Venezuela"],
+  "CountryCodes": ["VE"]
+}, {
+  "CurrencyCode": "VND",
+  "CurrencyName": "Vietnamese Dong",
+  "CountriesUsing": ["Vietnam"],
+  "CountryCodes": ["VN"]
+}, {
+  "CurrencyCode": "VUV",
+  "CurrencyName": "Vanuatu Vatu",
+  "CountriesUsing": ["Vanuatu"],
+  "CountryCodes": ["VU"]
+}, {
+  "CurrencyCode": "WST",
+  "CurrencyName": "Samoan Tala",
+  "CountriesUsing": ["Samoa"],
+  "CountryCodes": ["WS"]
+}, {
+  "CurrencyCode": "XAF",
+  "CurrencyName": "CFA Franc BEAC",
+  "CountriesUsing": ["Central African Republic"],
+  "CountryCodes": ["CF"]
+}, {
+  "CurrencyCode": "XCD",
+  "CurrencyName": "East Caribbean Dollar",
+  "CountriesUsing": ["Antigua and Barbuda", "Anguilla", "Grenada", "Montserrat", "Saint Vincent and the Grenadines"],
+  "CountryCodes": ["AG", "AI", "GD", "MS", "VC"]
+}, {
+  "CurrencyCode": "XOF",
+  "CurrencyName": "CFA Franc BCEAO",
+  "CountriesUsing": ["Benin", "Burkina Faso", "GuineaBissau", "Cte dIvoire", "Mali", "Niger", "Senegal", "Togo", "Cameroon", "Gabon", "Chad"],
+  "CountryCodes": ["BJ", "BF", "GW", "CI", "ML", "NE", "SN", "TG", "CM", "GA", "TD"]
+}, {
+  "CurrencyCode": "XPF",
+  "CurrencyName": "CFP Franc",
+  "CountriesUsing": ["French Polynesia", "New Caledonia", "Wallis and Futuna"],
+  "CountryCodes": ["PF", "NC", "WF"]
+}, {
+  "CurrencyCode": "YER",
+  "CurrencyName": "Yemeni Rial",
+  "CountriesUsing": ["Yemen"],
+  "CountryCodes": ["YE"]
+}, {
+  "CurrencyCode": "ZAR",
+  "CurrencyName": "South African Rand",
+  "CountriesUsing": ["South Africa", "Lesotho"],
+  "CountryCodes": ["ZA", "LS"]
+}, {
+  "CurrencyCode": "ZMW",
+  "CurrencyName": "Zambian Kwacha",
+  "CountriesUsing": ["Zambia"],
+  "CountryCodes": ["ZM"]
+}];
+var currency_list = all_currency.map(function (res) {
+  return {
+    CurrencyCode: res.CurrencyCode,
+    CurrencyName: res.CurrencyName
+  };
+});
+module.exports = {
+  currency_list: currency_list
+};
 
 /***/ }),
 
@@ -499,6 +1349,17 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-autocomplete":
+/*!*************************************!*\
+  !*** external "react-autocomplete" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-autocomplete");
 
 /***/ }),
 
