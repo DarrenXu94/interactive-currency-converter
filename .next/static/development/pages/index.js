@@ -132,14 +132,15 @@ function (_Component) {
         renderItem: function renderItem(item, isHighlighted) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             style: {
-              background: isHighlighted ? 'lightgray' : 'black'
+              background: isHighlighted ? 'lightgray' : 'black',
+              cursor: 'pointer'
             },
             __source: {
               fileName: _jsxFileName,
               lineNumber: 35
             },
             __self: this
-          }, item.CurrencyCode);
+          }, item.CurrencyCode, " - ", item.CurrencyName);
         },
         shouldItemRender: matchCurrencyToTerm,
         value: value,

@@ -32,8 +32,8 @@ class ConverterForm extends Component {
                     getItemValue={(item) => item.CurrencyCode}
                     items={CurrencySelector.currency_list}
                     renderItem={(item, isHighlighted) =>
-                        <div style={{ background: isHighlighted ? 'lightgray' : 'black' }}>
-                            {item.CurrencyCode}
+                        <div style={{ background: isHighlighted ? 'lightgray' : 'black', cursor: 'pointer' }}>
+                            {item.CurrencyCode} - {item.CurrencyName}
                         </div>
                     }
                     shouldItemRender={matchCurrencyToTerm}
