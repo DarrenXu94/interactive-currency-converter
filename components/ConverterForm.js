@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Currency from '../api/Currency'
+// import Currency from '../api/Currency'
 
 import CountryCodes from '../configs/CountryCodes'
 import CurrencySelector from '../configs/CurrencySelector'
