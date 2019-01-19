@@ -7,7 +7,7 @@ export default () => (
     </Head>
     <style jsx global>{`
       body { 
-        background: #000;
+        background: #252529;
         color: #fff;
         padding: 0;
         margin: 0;

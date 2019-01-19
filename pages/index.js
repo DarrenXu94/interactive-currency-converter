@@ -7,6 +7,8 @@ const Formatter = () => <div>
     <World />
     <style jsx>
     {` 
+        font-family: 'PT Sans', sans-serif;
+        padding: 2rem;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 

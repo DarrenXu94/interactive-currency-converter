@@ -1045,7 +1045,7 @@ width: 1000px;
 }
 
 svg {
-  background-color: #000;
+  background-color: #252529;
   stroke: #eee; 
   stroke-width: 1;
   fill: #2eaacd;
