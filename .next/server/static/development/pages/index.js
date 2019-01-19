@@ -93,6 +93,24 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./api/Currency.js":
+/*!*************************!*\
+  !*** ./api/Currency.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var axios = __webpack_require__(/*! axios */ "axios");
+
+/* harmony default export */ __webpack_exports__["default"] = (function (from, to) {
+  var sample_response = "{\"base\":\"USD\",\"last_update\":\"2019-01-12T06:04:42.769Z\",\"rates\":{\"EUR\":0.8721736499},\"status\":200,\"target\":\"EUR\"}";
+  return sample_response;
+});
+
+/***/ }),
+
 /***/ "./components/AutoCompleteWrapper.js":
 /*!*******************************************!*\
   !*** ./components/AutoCompleteWrapper.js ***!
@@ -237,7 +255,8 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AutoCompleteWrapper */ "./components/AutoCompleteWrapper.js");
+/* harmony import */ var _api_Currency__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/Currency */ "./api/Currency.js");
+/* harmony import */ var _AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AutoCompleteWrapper */ "./components/AutoCompleteWrapper.js");
 var _jsxFileName = "/home/hazard/Code/interactive-currency-converter/components/ConverterForm.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -260,7 +279,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
- // import Currency from '../api/Currency'
+
 
 
 
@@ -282,8 +301,38 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ConverterForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSelectParent", function (value) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      convertFrom: '',
+      convertTo: ''
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "requestConversion", function () {
+      var _this$state = _this.state,
+          convertFrom = _this$state.convertFrom,
+          convertTo = _this$state.convertTo;
+
+      if (convertFrom !== '' && convertTo !== '') {
+        var res = Object(_api_Currency__WEBPACK_IMPORTED_MODULE_1__["default"])(convertFrom, convertTo);
+        console.log(res);
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSelectConvertFrom", function (value) {
       console.log(value);
+
+      _this.setState({
+        convertFrom: value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSelectConvertTo", function (value) {
+      console.log(value);
+
+      _this.setState({
+        convertTo: value
+      });
+
+      _this.requestConversion();
     });
 
     return _this;
@@ -292,75 +341,84 @@ function (_Component) {
   _createClass(ConverterForm, [{
     key: "render",
     value: function render() {
+      var _this$state2 = this.state,
+          convertFrom = _this$state2.convertFrom,
+          convertTo = _this$state2.convertTo;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 37
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 38
         },
         __self: this
       }, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 41
         },
         __self: this
       }, "Choose a currency to convert from"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 42
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onSelectParent: this.onSelectParent,
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onSelectParent: this.onSelectConvertFrom,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 43
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 44
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 48
         },
         __self: this
       }, "Choose a currency to convert to"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 49
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onSelectParent: this.onSelectParent,
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onSelectParent: this.onSelectConvertTo,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 50
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 51
         },
         __self: this
-      }));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 53
+        },
+        __self: this
+      }, "Converting ", convertFrom, " to ", convertTo));
     }
   }]);
 
@@ -1315,6 +1373,17 @@ var Formatter = function Formatter() {
 
 module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
