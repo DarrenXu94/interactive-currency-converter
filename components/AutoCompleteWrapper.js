@@ -10,7 +10,7 @@ function matchCurrencyToTerm(currency, value) {
 }
 
 class AutoCompleteWrapper extends Component {
-    state = { value: 'AUD' }
+    state = { value: '' }
     onSelected = (value) => {
         this.setState({ value })
         this.props.onSelectParent(value)

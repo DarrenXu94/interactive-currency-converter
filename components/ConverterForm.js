@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Currency from '../api/Currency'
 
 import AutocompleteWrapper from './AutoCompleteWrapper'
-
+import StepConvertor from './StepConvertor'
 
 class ConverterForm extends Component {
 
@@ -51,6 +51,7 @@ class ConverterForm extends Component {
                 <br />
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
+                <StepConvertor convertFrom={convertFrom} convertTo={convertTo}/>
 
             </div>
         );
