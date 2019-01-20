@@ -28,7 +28,6 @@ class ConverterForm extends Component {
     onSelectConvertTo = (value) => {
         console.log(value)
         this.setState({ convertTo: value })
-        this.requestConversion()
 
     }
 
@@ -50,6 +49,9 @@ class ConverterForm extends Component {
                 <br />
                 <AutocompleteWrapper onSelectParent={this.onSelectConvertTo} />
                 <br />
+                <br />
+
+                <button onClick={this.requestConversion}>Convert</button>
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
                 {apiResponse !== '' &&
