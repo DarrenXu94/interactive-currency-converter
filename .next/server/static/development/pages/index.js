@@ -305,7 +305,8 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       convertFrom: '',
-      convertTo: ''
+      convertTo: '',
+      apiResponse: ''
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "requestConversion", function () {
@@ -315,7 +316,10 @@ function (_Component) {
 
       if (convertFrom !== '' && convertTo !== '') {
         var res = Object(_api_Currency__WEBPACK_IMPORTED_MODULE_1__["default"])(convertFrom, convertTo);
-        console.log(res);
+
+        _this.setState({
+          apiResponse: res
+        });
       }
     });
 
@@ -345,39 +349,34 @@ function (_Component) {
     value: function render() {
       var _this$state2 = this.state,
           convertFrom = _this$state2.convertFrom,
-          convertTo = _this$state2.convertTo;
+          convertTo = _this$state2.convertTo,
+          apiResponse = _this$state2.apiResponse;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 37
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 38
         },
         __self: this
-      }, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 39
         },
         __self: this
-      }, "Choose a currency to convert from"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      }, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 42
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        onSelectParent: this.onSelectConvertFrom,
+      }, "Choose a currency to convert from"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 43
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onSelectParent: this.onSelectConvertFrom,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 44
@@ -386,46 +385,53 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 45
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, "Choose a currency to convert to"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 50
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
         onSelectParent: this.onSelectConvertTo,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 51
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 52
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 54
         },
         __self: this
-      }, "Converting ", convertFrom, " to ", convertTo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StepConvertor__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, "Converting ", convertFrom, " to ", convertTo), apiResponse !== '' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StepConvertor__WEBPACK_IMPORTED_MODULE_3__["default"], {
         convertFrom: convertFrom,
         convertTo: convertTo,
+        apiResponse: apiResponse,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 56
         },
         __self: this
       }));
@@ -554,7 +560,7 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       rate: 0,
       fromValue: 1,
-      toValue: 0
+      toValue: 1
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (event) {
@@ -563,29 +569,54 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "calculateValue", function () {
+      var apiResponse = _this.props.apiResponse;
+      var JSONResponse = JSON.parse(apiResponse);
+      var rates = JSONResponse.rates;
+      var rate = rates[_this.props.convertTo];
+
+      _this.setState({
+        rate: rate
+      });
+
+      var toValue = _this.state.toValue;
+      toValue = toValue * rate;
+
+      _this.setState({
+        toValue: toValue
+      });
+    });
+
     return _this;
   }
 
   _createClass(StepConvertor, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.calculateValue();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var fromValue = this.state.fromValue;
+      var _this$state = this.state,
+          fromValue = _this$state.fromValue,
+          toValue = _this$state.toValue;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 34
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 35
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 36
         },
         __self: this
       }, "Converting from ", this.props.convertFrom), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -595,28 +626,29 @@ function (_Component) {
         onChange: this.handleChange,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 38
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 39
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 40
         },
         __self: this
       }, "Converting to ", this.props.convertTo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         name: "convertedTo",
+        value: toValue,
         readOnly: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 42
         },
         __self: this
       })));

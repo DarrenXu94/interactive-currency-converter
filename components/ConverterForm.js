@@ -6,33 +6,34 @@ import StepConvertor from './StepConvertor'
 
 class ConverterForm extends Component {
 
-    state ={
+    state = {
         convertFrom: '',
-        convertTo: ''
+        convertTo: '',
+        apiResponse: ''
     }
 
     requestConversion = () => {
-        let {convertFrom, convertTo} = this.state;
-        if (convertFrom !== '' && convertTo !== ''){
+        let { convertFrom, convertTo } = this.state;
+        if (convertFrom !== '' && convertTo !== '') {
             let res = Currency(convertFrom, convertTo)
-            console.log(res)
+            this.setState({ apiResponse: res })
         }
     }
 
     onSelectConvertFrom = (value) => {
         console.log(value)
-        this.setState({convertFrom: value})
+        this.setState({ convertFrom: value })
     }
 
     onSelectConvertTo = (value) => {
         console.log(value)
-        this.setState({convertTo: value})
+        this.setState({ convertTo: value })
         this.requestConversion()
 
     }
 
     render() {
-        let { convertFrom, convertTo } = this.state
+        let { convertFrom, convertTo, apiResponse } = this.state
         return (
             <div>
                 <h1>
@@ -51,7 +52,9 @@ class ConverterForm extends Component {
                 <br />
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
-                <StepConvertor convertFrom={convertFrom} convertTo={convertTo}/>
+                {apiResponse !== '' &&
+                    <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} />
+                }
 
             </div>
         );
