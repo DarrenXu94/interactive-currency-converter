@@ -8,7 +8,9 @@ class StepConvertor extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({fromValue: event.target.value})
+        let calculatedToValue = event.target.value * this.state.rate
+        this.setState({fromValue: event.target.value, toValue: calculatedToValue})
+
     }
 
     calculateValue = () => {
