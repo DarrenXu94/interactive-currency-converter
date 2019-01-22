@@ -20,7 +20,7 @@ class ConverterForm extends Component {
         }
     }
 
-    onChange = (value, type) => {
+    updateValue = (value, type) => {
         switch(type){
             case 'from':
                 this.setState({ convertFrom: value })
@@ -34,8 +34,13 @@ class ConverterForm extends Component {
         }
     }
 
+    onChange = (value,type) => {
+        this.updateValue(value,type);
+
+    }
+
     onSelect = (value, type) => {
-        this.onChange(value,type);
+        this.updateValue(value,type);
     }
 
 
