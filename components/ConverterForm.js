@@ -20,19 +20,34 @@ class ConverterForm extends Component {
         }
     }
 
-    onSelectConvertFrom = (value) => {
-        console.log(value)
-        this.setState({ convertFrom: value })
+    onChange = (value, type) => {
+        switch(type){
+            case 'from':
+                this.setState({ convertFrom: value })
+                break;
+            case 'to':
+                this.setState({ convertTo: value })
+                break;
+            default:
+                break;    
+    
+        }
     }
 
-    onSelectConvertTo = (value) => {
-        console.log(value)
-        this.setState({ convertTo: value })
+    onSelect = (value, type) => {
+        this.onChange(value,type);
+    }
+
+
+    onSwapClick = () => {
+        let {convertFrom, convertTo} = this.state;
+        this.setState({convertFrom: convertTo, convertTo: convertFrom})
 
     }
 
     render() {
-        let { convertFrom, convertTo, apiResponse } = this.state
+        let { convertFrom, convertTo, apiResponse } = this.state;
+        let {onChange, onSelect} = this
         return (
             <div>
                 <h1>
@@ -40,18 +55,20 @@ class ConverterForm extends Component {
                 </h1>
                 <label>Choose a currency to convert from</label>
                 <br />
-                <AutocompleteWrapper onSelectParent={this.onSelectConvertFrom} />
+                <AutocompleteWrapper onSelectParent={onSelect} value={convertFrom} onChange={onChange} type={'from'}/>
                 <br />
 
                 <br />
 
                 <label>Choose a currency to convert to</label>
                 <br />
-                <AutocompleteWrapper onSelectParent={this.onSelectConvertTo} />
+                <AutocompleteWrapper onSelectParent={onSelect} value={convertTo} onChange={onChange} type={'to'}/>
                 <br />
                 <br />
 
                 <button onClick={this.requestConversion}>Convert</button>
+
+                <button onClick={this.onSwapClick}>Swap</button>
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
                 {apiResponse !== '' &&

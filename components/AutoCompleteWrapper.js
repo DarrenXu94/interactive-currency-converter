@@ -10,13 +10,9 @@ function matchCurrencyToTerm(currency, value) {
 }
 
 class AutoCompleteWrapper extends Component {
-    state = { value: '' }
-    onSelected = (value) => {
-        this.setState({ value })
-        this.props.onSelectParent(value)
-    }
+
     render() {
-        let { value } = this.state
+        let { value, type, onChange, onSelectParent } = this.props
 
         return (
             <Fragment>
@@ -30,8 +26,8 @@ class AutoCompleteWrapper extends Component {
                     }
                     shouldItemRender={matchCurrencyToTerm}
                     value={value}
-                    onChange={(event, value) => this.setState({ value })}
-                    onSelect={this.onSelected}
+                    onChange={(event,value)=>onChange(value, type)}
+                    onSelect={(value)=>onSelectParent(value,type)}
                 />
             </Fragment>
         );

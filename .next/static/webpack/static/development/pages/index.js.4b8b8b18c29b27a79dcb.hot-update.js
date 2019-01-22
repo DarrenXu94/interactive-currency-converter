@@ -1,9 +1,9 @@
 webpackHotUpdate("static/development/pages/index.js",{
 
-/***/ "./components/StepConvertor.js":
-/*!*************************************!*\
-  !*** ./components/StepConvertor.js ***!
-  \*************************************/
+/***/ "./components/AutoCompleteWrapper.js":
+/*!*******************************************!*\
+  !*** ./components/AutoCompleteWrapper.js ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11,7 +11,11 @@ webpackHotUpdate("static/development/pages/index.js",{
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/home/hazard/Code/interactive-currency-converter/components/StepConvertor.js";
+/* harmony import */ var react_autocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-autocomplete */ "./node_modules/react-autocomplete/build/lib/Autocomplete.js");
+/* harmony import */ var react_autocomplete__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_autocomplete__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../configs/CurrencySelector */ "./configs/CurrencySelector.js");
+/* harmony import */ var _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/home/hazard/Code/interactive-currency-converter/components/AutoCompleteWrapper.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -35,131 +39,92 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var StepConvertor =
+
+
+function matchCurrencyToTerm(currency, value) {
+  return currency.CurrencyCode.toLowerCase().indexOf(value.toLowerCase()) !== -1 || currency.CurrencyName.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+}
+
+var AutoCompleteWrapper =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(StepConvertor, _Component);
+  _inherits(AutoCompleteWrapper, _Component);
 
-  function StepConvertor() {
+  function AutoCompleteWrapper() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, StepConvertor);
+    _classCallCheck(this, AutoCompleteWrapper);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(StepConvertor)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AutoCompleteWrapper)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      rate: 0,
-      fromValue: 1,
-      toValue: 1
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (event) {
-      var calculatedToValue = event.target.value * _this.state.rate;
-
-      _this.setState({
-        fromValue: event.target.value,
-        toValue: calculatedToValue
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "calculateValue", function () {
-      var apiResponse = _this.props.apiResponse;
-      var JSONResponse = JSON.parse(apiResponse);
-      var rates = JSONResponse.rates;
-      var rate = rates[_this.props.convertTo];
-
-      _this.setState({
-        rate: rate
-      });
-
-      var toValue = _this.state.toValue;
-      toValue = toValue * rate;
-
-      _this.setState({
-        toValue: toValue
-      });
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSelected", function (value) {
+      // this.setState({ value })
+      _this.props.onSelectParent(value);
     });
 
     return _this;
   }
 
-  _createClass(StepConvertor, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.calculateValue();
-    }
-  }, {
+  _createClass(AutoCompleteWrapper, [{
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          fromValue = _this$state.fromValue,
-          toValue = _this$state.toValue;
+      var _this2 = this;
+
+      var value = this.props.value;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 22
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_autocomplete__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        getItemValue: function getItemValue(item) {
+          return item.CurrencyCode;
+        },
+        items: _configs_CurrencySelector__WEBPACK_IMPORTED_MODULE_2___default.a.currency_list,
+        renderItem: function renderItem(item, isHighlighted) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: item.CurrencyCode,
+            style: {
+              background: isHighlighted ? 'lightgray' : 'black',
+              cursor: 'pointer'
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 27
+            },
+            __self: this
+          }, item.CurrencyCode, " - ", item.CurrencyName);
+        },
+        shouldItemRender: matchCurrencyToTerm,
+        value: value,
+        onChange: function onChange(event, value) {
+          return _this2.setState({
+            value: value
+          });
+        },
+        onSelect: this.onSelected,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 23
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 38
-        },
-        __self: this
-      }, "Converting from ", this.props.convertFrom), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        name: "convertedFrom",
-        value: fromValue,
-        onChange: this.handleChange,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 40
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 41
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 42
-        },
-        __self: this
-      }, "Converting to ", this.props.convertTo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        name: "convertedTo",
-        value: toValue,
-        readOnly: true,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 44
-        },
-        __self: this
-      })));
+      }));
     }
   }]);
 
-  return StepConvertor;
+  return AutoCompleteWrapper;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (StepConvertor);
+/* harmony default export */ __webpack_exports__["default"] = (AutoCompleteWrapper);
 
 /***/ })
 
 })
-//# sourceMappingURL=index.js.0a8c761881f4dce4dfda.hot-update.js.map
+//# sourceMappingURL=index.js.4b8b8b18c29b27a79dcb.hot-update.js.map
