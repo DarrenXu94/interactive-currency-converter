@@ -6,8 +6,7 @@ var axios = require("axios");
 
 export default (from, to) => {
     console.log(from, to)
-    console.log(process.env)
-    console.log(process.env.API_KEY)
+    console.log(process.env.REACT_APP_API_KEY)
 
 
 

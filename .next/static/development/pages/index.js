@@ -15,8 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (function (from, to) {
   console.log(from, to);
-  console.log(process.env);
-  console.log(process.env.API_KEY);
+  console.log(process.env.REACT_APP_API_KEY);
   var sample_response = "{\"base\":\"USD\",\"last_update\":\"2019-01-12T06:04:42.769Z\",\"rates\":{\"EUR\":0.8721736499},\"status\":200,\"target\":\"EUR\"}";
   return sample_response;
 });
