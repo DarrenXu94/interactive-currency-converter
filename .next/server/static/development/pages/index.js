@@ -247,6 +247,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
  // import Currency from '../api/Currency'
 
+var axios = __webpack_require__(/*! axios */ "axios");
+
 
 
 
@@ -274,20 +276,69 @@ function (_Component) {
       apiResponse: ''
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "apiDataCall",
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(from, to) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/convert/".concat(from, "/").concat(to));
+
+              case 2:
+                return _context.abrupt("return", _context.sent);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "requestConversion",
     /*#__PURE__*/
     _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var _this$state, convertFrom, convertTo, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
+              _this$state = _this.state, convertFrom = _this$state.convertFrom, convertTo = _this$state.convertTo;
+
+              if (!(convertFrom !== '' && convertTo !== '')) {
+                _context2.next = 6;
+                break;
+              }
+
+              _context2.next = 4;
+              return _this.apiDataCall(convertFrom, convertTo);
+
+            case 4:
+              data = _context2.sent;
+
+              _this.setState({
+                apiResponse: JSON.stringify(data.data)
+              });
+
+            case 6:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, this);
+      }, _callee2, this);
     })));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateValue", function (value, type) {
@@ -320,9 +371,9 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSwapClick", function () {
-      var _this$state = _this.state,
-          convertFrom = _this$state.convertFrom,
-          convertTo = _this$state.convertTo;
+      var _this$state2 = _this.state,
+          convertFrom = _this$state2.convertFrom,
+          convertTo = _this$state2.convertTo;
 
       _this.setState({
         convertFrom: convertTo,
@@ -336,10 +387,10 @@ function (_Component) {
   _createClass(ConverterForm, [{
     key: "render",
     value: function render() {
-      var _this$state2 = this.state,
-          convertFrom = _this$state2.convertFrom,
-          convertTo = _this$state2.convertTo,
-          apiResponse = _this$state2.apiResponse;
+      var _this$state3 = this.state,
+          convertFrom = _this$state3.convertFrom,
+          convertTo = _this$state3.convertTo,
+          apiResponse = _this$state3.apiResponse;
       var onChange = this.onChange,
           onSelect = this.onSelect;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Convert currencies live!"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Choose a currency to convert from"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_AutoCompleteWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1487,6 +1538,17 @@ module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

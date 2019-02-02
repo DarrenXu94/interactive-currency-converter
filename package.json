@@ -16,13 +16,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.4",
-    "fs": "0.0.1-security",
-    "net": "^1.0.2",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-autocomplete": "^1.8.1",
-    "react-dom": "^16.7.0",
-    "request": "^2.88.0",
-    "tls": "0.0.1"
+    "react-dom": "^16.7.0"
   }
 }
