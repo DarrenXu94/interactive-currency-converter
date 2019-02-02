@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Currency from '../api/Currency'
+// import Currency from '../api/Currency'
 
 import AutocompleteWrapper from './AutoCompleteWrapper'
 import StepConvertor from './StepConvertor'
@@ -13,11 +13,11 @@ class ConverterForm extends Component {
     }
 
     requestConversion = async () => {
-        let { convertFrom, convertTo } = this.state;
-        if (convertFrom !== '' && convertTo !== '') {
-            let res = await Currency(convertFrom, convertTo)
-            this.setState({ apiResponse: res })
-        }
+        // let { convertFrom, convertTo } = this.state;
+        // if (convertFrom !== '' && convertTo !== '') {
+        //     let res = await Currency(convertFrom, convertTo)
+        //     this.setState({ apiResponse: res })
+        // }
     }
 
     updateValue = (value, type) => {
