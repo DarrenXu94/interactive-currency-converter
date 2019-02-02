@@ -12,10 +12,10 @@ class ConverterForm extends Component {
         apiResponse: ''
     }
 
-    requestConversion = () => {
+    requestConversion = async () => {
         let { convertFrom, convertTo } = this.state;
         if (convertFrom !== '' && convertTo !== '') {
-            let res = Currency(convertFrom, convertTo)
+            let res = await Currency(convertFrom, convertTo)
             this.setState({ apiResponse: res })
         }
     }
