@@ -102,12 +102,14 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var axios = __webpack_require__(/*! axios */ "axios"); // if (process.env.NODE_ENV == '')
+var axios = __webpack_require__(/*! axios */ "axios"); // if (process.env.NODE_ENV == 'production') {
+// }
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (from, to) {
   console.log(from, to);
-  console.log("development");
+  console.log(process.env);
+  console.log(process.env.API_KEY);
   var sample_response = "{\"base\":\"USD\",\"last_update\":\"2019-01-12T06:04:42.769Z\",\"rates\":{\"EUR\":0.8721736499},\"status\":200,\"target\":\"EUR\"}";
   return sample_response;
 });
