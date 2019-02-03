@@ -25,7 +25,7 @@ return new Promise((res,rej) => {
 }
 
 exports.handler = async function(event, context, callback) {
-    let res = await httpGetAsync()
+    let res = await httpGetAsync('AUD','USD')
     let eventCode = event
     callback(null, {
         statusCode: 200,
