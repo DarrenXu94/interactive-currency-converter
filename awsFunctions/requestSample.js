@@ -1,21 +1,34 @@
-function httpGetAsync(theUrl, callback)
+const https = require('https');
+
+function httpGetAsync()
 {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-    xmlHttp.send(null);
+return new Promise((res,rej) => {
+
+    https.get(`https://api.currencystack.io/currency?base=USD&target=EUR&apikey=${process.env.API_KEY}`, (resp) => {
+        let data = '';
+        
+        //   // A chunk of data has been recieved.
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+        
+        // The whole response has been received. Print out the result.
+        resp.on('end', () => {
+            console.log(JSON.parse(data));
+            res(JSON.parse(data))
+        });
+        
+    }).on("error", (err) => {
+        console.log("Error: " + err.message);
+    });
+})
 }
 
 exports.handler = async function(event, context, callback) {
-    httpGetAsync('https://stackoverflow.com/questions/247483/http-get-request-in-javascript', (res) => {
-    console.log(res)
+    let res = await httpGetAsync()
     callback(null, {
         statusCode: 200,
         body: `Hello, World ${res}`
         });
-})
     
 }
