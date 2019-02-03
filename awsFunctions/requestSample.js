@@ -26,9 +26,10 @@ return new Promise((res,rej) => {
 
 exports.handler = async function(event, context, callback) {
     let res = await httpGetAsync()
+    let eventCode = event
     callback(null, {
         statusCode: 200,
-        body: `Hello, World ${JSON.stringify(res)}. The event code is ${JSON.stringify(event)}`
+        body: `Hello, World ${JSON.stringify(res)}. The event code is ${eventCode.queryStringParameters}`
         });
     
 }
