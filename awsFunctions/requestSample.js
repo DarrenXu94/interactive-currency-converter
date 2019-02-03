@@ -25,8 +25,13 @@ return new Promise((res,rej) => {
 }
 
 exports.handler = async function(event, context, callback) {
-    let res = await httpGetAsync('AUD','USD')
-    let eventCode = event
+    let eventCode = JSON.parse(event)
+    let queryStringParameters = JSON.parse(eventCode.queryStringParameters)
+    let from = queryStringParameters['base'];
+    let to = queryStringParameters['to']
+
+    let res = await httpGetAsync(from,to)
+
     callback(null, {
         statusCode: 200,
         body: `Hello, World ${JSON.stringify(res)}. The event code is ${JSON.stringify(eventCode)}`
