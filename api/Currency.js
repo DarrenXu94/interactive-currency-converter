@@ -1,12 +1,12 @@
 var request = require("request");
-let key;
-if (process.env.NODE_ENV === 'production') {
-    key = process.env.API_KEY
-} else {
-    key = require('./Private')
-}
+// let key;
+// if (process.env.NODE_ENV === 'production') {
+//     key = process.env.API_KEY
+// } else {
+//     key = require('./Private')
+// }
 
-module.exports = async (from,to) => {
+module.exports = async (from,to, key) => {
     return new Promise((res,rej)=>{  
         var options = {
           method: 'GET',
