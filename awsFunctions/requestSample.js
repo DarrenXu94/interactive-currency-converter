@@ -29,7 +29,7 @@ exports.handler = async function(event, context, callback) {
     let eventCode = event
     callback(null, {
         statusCode: 200,
-        body: `Hello, World ${JSON.stringify(res)}. The event code is ${eventCode.queryStringParameters}`
+        body: `Hello, World ${JSON.stringify(res)}. The event code is ${JSON.stringify(eventCode)}`
         });
     
 }
