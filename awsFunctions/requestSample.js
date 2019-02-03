@@ -25,8 +25,8 @@ return new Promise((res,rej) => {
 }
 
 exports.handler = async function(event, context, callback) {
-    let eventCode = JSON.parse(event)
-    let queryStringParameters = JSON.parse(eventCode.queryStringParameters)
+    let eventCode = event
+    let queryStringParameters = eventCode.queryStringParameters
     let from = queryStringParameters['base'];
     let to = queryStringParameters['to']
 
