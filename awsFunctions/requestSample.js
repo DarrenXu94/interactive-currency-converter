@@ -1,10 +1,10 @@
 const https = require('https');
 
-function httpGetAsync()
+function httpGetAsync(from,to)
 {
 return new Promise((res,rej) => {
 
-    https.get(`https://api.currencystack.io/currency?base=USD&target=EUR&apikey=${process.env.API_KEY}`, (resp) => {
+    https.get(`https://api.currencystack.io/currency?base=${from}&target=${to}&apikey=${process.env.API_KEY}`, (resp) => {
         let data = '';
         
         //   // A chunk of data has been recieved.
@@ -28,7 +28,7 @@ exports.handler = async function(event, context, callback) {
     let res = await httpGetAsync()
     callback(null, {
         statusCode: 200,
-        body: `Hello, World ${JSON.stringify(res)}`
+        body: `Hello, World ${JSON.stringify(res)}. The event code is ${JSON.stringify(event)}`
         });
     
 }
