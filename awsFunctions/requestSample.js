@@ -28,7 +28,7 @@ exports.handler = async function(event, context, callback) {
     let res = await httpGetAsync()
     callback(null, {
         statusCode: 200,
-        body: `Hello, World ${res.toString()}`
+        body: `Hello, World ${JSON.stringify(res)}`
         });
     
 }
