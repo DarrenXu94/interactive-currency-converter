@@ -28,7 +28,7 @@ exports.handler = async function(event, context, callback) {
     let eventCode = event
     let queryStringParameters = eventCode.queryStringParameters
     let from = queryStringParameters['base'];
-    let to = queryStringParameters['to']
+    let to = queryStringParameters['target']
 
     let res = await httpGetAsync(from,to)
 
