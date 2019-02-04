@@ -5,6 +5,8 @@ var axios = require("axios");
 import AutocompleteWrapper from './AutoCompleteWrapper'
 import StepConvertor from './StepConvertor'
 
+
+
 class ConverterForm extends Component {
 
     state = {
@@ -13,15 +15,26 @@ class ConverterForm extends Component {
         apiResponse: ''
     }
 
-    apiDataCall = async (from, to) => {
-        return await axios.get(`/convert/${from}/${to}`)
+    // apiDataCall = async (from, to) => {
+    //     return await axios.get(`/convert/${from}/${to}`)
 
+    // }
+
+    fetchConversionData = async (from, to) =>{
+        let url;
+        if (process.env.NODE_ENV === 'development'){
+            url = `/convert/${from}/${to}`
+        } else {
+            url = `https://currency-convertor.netlify.com/.netlify/functions/requestSample?base=${from}&target=${to}`
+        }
+        return await axios.get(url)
     }
 
     requestConversion = async () => {
         let { convertFrom, convertTo } = this.state;
         if (convertFrom !== '' && convertTo !== '') {
-            let data = await this.apiDataCall(convertFrom, convertTo)
+            let data = await this.fetchConversionData(convertFrom, convertTo)
+            console.log(data)
             this.setState({ apiResponse: JSON.stringify(data.data) })
         }
 
