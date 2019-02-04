@@ -27,6 +27,7 @@ return new Promise((res,rej) => {
 exports.handler = async function(event, context, callback) {
     let eventCode = event
     let queryStringParameters = eventCode.queryStringParameters
+    // Have some query checking here
     let from = queryStringParameters['base'];
     let to = queryStringParameters['target']
 
@@ -34,7 +35,7 @@ exports.handler = async function(event, context, callback) {
 
     callback(null, {
         statusCode: 200,
-        body: `Hello, World ${JSON.stringify(res)}. The event code is ${JSON.stringify(eventCode)}`
+        body: JSON.stringify(res)
         });
     
 }
