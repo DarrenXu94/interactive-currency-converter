@@ -6,7 +6,7 @@ import Head from '../components/Head'
 const Formatter = () => <div>
     <ConverterForm />
     {/* <World /> */}
-    <WorldMap />
+    <WorldMap selected = {["AU", "YE", "YT", "ZA"]}/>
     <style jsx>
         {` 
         font-family: 'PT Sans', sans-serif;

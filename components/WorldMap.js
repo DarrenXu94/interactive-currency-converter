@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 class WorldMap extends Component {
     state = {
-        selected: ["WS", "YE", "YT", "ZA"]
+        selected: this.props.selected
     }
     render() {
         return (
@@ -1089,3 +1091,7 @@ svg {
 }
 
 export default WorldMap;
+
+WorldMap.propTypes = {
+    selected: PropTypes.arrayOf(PropTypes.string)
+}
