@@ -1,12 +1,14 @@
 import World from '../components/World'
+import WorldMap from '../components/WorldMap'
 import ConverterForm from '../components/ConverterForm'
 import Head from '../components/Head'
 
 const Formatter = () => <div>
-<ConverterForm />
-    <World />
+    <ConverterForm />
+    {/* <World /> */}
+    <WorldMap />
     <style jsx>
-    {` 
+        {` 
         font-family: 'PT Sans', sans-serif;
         padding: 2rem;
         display: grid;
@@ -20,8 +22,9 @@ const Formatter = () => <div>
     </style>
 </div>
 
+
 export default () => <div>
     <Head />
     <Formatter />
 
-    </div>
+</div>
