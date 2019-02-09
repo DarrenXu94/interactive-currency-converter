@@ -54,7 +54,7 @@ class Formatter extends Component {
             <div>
                 <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes}/>
                 {/* <World /> */}
-                <WorldMap selected={["AU", "YE", "YT", "ZA"]} />
+                <WorldMap selected={this.state.selected} />
                 <style jsx>
                     {` 
         font-family: 'PT Sans', sans-serif;
