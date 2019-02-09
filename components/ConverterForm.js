@@ -15,9 +15,9 @@ class ConverterForm extends Component {
     }
 
 
-    fetchConversionData = async (from, to) =>{
+    fetchConversionData = async (from, to) => {
         let url;
-        if (process.env.NODE_ENV === 'development'){
+        if (process.env.NODE_ENV === 'development') {
             url = `/convert/${from}/${to}`
         } else {
             url = `https://currency-convertor.netlify.com/.netlify/functions/requestSample?base=${from}&target=${to}`
@@ -45,7 +45,7 @@ class ConverterForm extends Component {
     }
 
     render() {
-        let {apiResponse} = this.state;
+        let { apiResponse } = this.state;
         let { convertFrom, convertTo } = this.props;
         let { onChange, onSelect } = this
         return (
@@ -66,16 +66,46 @@ class ConverterForm extends Component {
                 <br />
                 <br />
 
-                <button onClick={this.requestConversion}>Convert</button>
+                <button className="myButton" onClick={this.requestConversion}>Convert</button>
 
-                <button onClick={this.props.onSwapClick}>Swap</button>
+                <button className="myButton" onClick={this.props.onSwapClick}>Swap</button>
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
                 {apiResponse !== '' &&
                     <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} />
                 }
-
+                <style jsx>
+                    {`
+.myButton {
+	-moz-box-shadow: 0px 1px 0px 0px #1c1b18;
+	-webkit-box-shadow: 0px 1px 0px 0px #1c1b18;
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background-color:#7396ae;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #525252;
+}
+.myButton:hover {
+	background-color:#91b9d6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+                    `}
+                </style>
             </div>
+
         );
     }
 }
