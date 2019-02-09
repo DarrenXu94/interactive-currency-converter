@@ -76,32 +76,36 @@ class ConverterForm extends Component {
                 }
                 <style jsx>
                     {`
-.myButton {
-	-moz-box-shadow: 0px 1px 0px 0px #1c1b18;
-	-webkit-box-shadow: 0px 1px 0px 0px #1c1b18;
-	box-shadow: 0px 1px 0px 0px #1c1b18;
-	background-color:#7396ae;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;
-	border-radius:15px;
-	border:2px solid #333029;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:14px;
-	font-weight:bold;
-	padding:12px 16px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #525252;
-}
-.myButton:hover {
-	background-color:#91b9d6;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}
+                        .myButton {
+                            -moz-box-shadow: 0px 1px 0px 0px #1c1b18;
+                            -webkit-box-shadow: 0px 1px 0px 0px #1c1b18;
+                            box-shadow: 0px 1px 0px 0px #1c1b18;
+                            background-color:#7396ae;
+                            -moz-border-radius:15px;
+                            -webkit-border-radius:15px;
+                            border-radius:15px;
+                            border:2px solid #333029;
+                            display:inline-block;
+                            cursor:pointer;
+                            color:#ffffff;
+                            font-family:Arial;
+                            font-size:14px;
+                            font-weight:bold;
+                            padding:12px 16px;
+                            text-decoration:none;
+                            text-shadow:0px 1px 0px #525252;
+                        }
+                        .myButton:hover {
+                            background-color:#91b9d6;
+                        }
+                        .myButton:active {
+                            position:relative;
+                            top:1px;
+                        }
+
+                        label {
+                            padding-left: 0.5rem;
+                        }
                     `}
                 </style>
             </div>

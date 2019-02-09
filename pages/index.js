@@ -118,15 +118,13 @@ class Formatter extends Component {
                 <WorldMap selected={this.state.selected} onMapClick={this.onMapClick} />
                 <style jsx>
                     {` 
-        font-family: 'PT Sans', sans-serif;
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-
-        @media(max-width: 960px) {
-            display: block;
-
-        }
+	                font-family:Arial;
+                    padding: 2rem;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    @media(max-width: 960px) {
+                        display: block;
+                    }
     `}
                 </style>
             </div>
