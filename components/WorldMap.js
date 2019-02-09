@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 class WorldMap extends Component {
 
+    componentDidMount() {
+        console.log("Loaded")
+    }
+
     render() {
         return (
             <div onClick={this.props.onMapClick}>
