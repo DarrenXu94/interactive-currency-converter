@@ -8,8 +8,8 @@ import CurrencySelector from '../configs/CurrencySelector'
 
 class Formatter extends Component {
     state = {
-        convertFrom: null,
-        convertTo: null,
+        convertFrom: '',
+        convertTo: '',
         selected: [],
         countryNames: [],
         clickCountryFrom: null,
@@ -56,9 +56,8 @@ class Formatter extends Component {
         }
     }
 
-    populateForm = () => {
+    populateForm = (tracker) => {
         let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
-        console.log(clickCountryFrom, clickCountryTo)
 
         let currencyList = CurrencySelector.currency_and_countries
 
@@ -66,27 +65,55 @@ class Formatter extends Component {
 
         let currencyObject = currencyList.find(cur => cur.CountryCodes.includes(targetCountry))
         let currency = currencyObject.CurrencyCode
-        console.log(currency)
-
-
+        switch(tracker){
+            case('from'): 
+                this.setState({convertFrom: currency}, () => this.updateSelectedList())
+                break;
+            case('to'):
+                this.setState({convertTo: currency}, () => this.updateSelectedList())
+                break;
+            default:
+                break;    
+        }
     }
 
     onMapClick = (item) => {
         let id = item.target.id
-        console.log(id)
         let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
         if (clickTracker === 'from') {
-            this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm())
+            this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm('from'))
         } else {
-            this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm())
+            this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm('to'))
         }
-        
     }
 
+    updateValue = (value, type) => {
+        this.updateMapCountryCodes(value,type)
+        switch (type) {
+            case 'from':
+                this.setState({ convertFrom: value })
+                break;
+            case 'to':
+                this.setState({ convertTo: value })
+                break;
+            default:
+                break;
+        }
+    }
+
+    onSwapClick = () => {
+        let { convertFrom, convertTo } = this.state;
+        this.setState({ convertFrom: convertTo, convertTo: convertFrom })
+
+    }
     render() {
+        let {convertFrom, convertTo} = this.state
         return (
             <div>
-                <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes} />
+                <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes} convertFrom={convertFrom} convertTo={convertTo} 
+                updateValue={this.updateValue}
+                onSwapClick={this.onSwapClick}
+                />
                 {/* <World /> */}
                 <WorldMap selected={this.state.selected} onMapClick={this.onMapClick} />
                 <style jsx>

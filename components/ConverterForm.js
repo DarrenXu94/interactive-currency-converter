@@ -11,15 +11,9 @@ import PropTypes from 'prop-types';
 class ConverterForm extends Component {
 
     state = {
-        convertFrom: '',
-        convertTo: '',
         apiResponse: ''
     }
 
-    // apiDataCall = async (from, to) => {
-    //     return await axios.get(`/convert/${from}/${to}`)
-
-    // }
 
     fetchConversionData = async (from, to) =>{
         let url;
@@ -32,7 +26,7 @@ class ConverterForm extends Component {
     }
 
     requestConversion = async () => {
-        let { convertFrom, convertTo } = this.state;
+        let { convertFrom, convertTo } = this.props;
         if (convertFrom !== '' && convertTo !== '') {
             let data = await this.fetchConversionData(convertFrom, convertTo)
             console.log(data)
@@ -41,39 +35,18 @@ class ConverterForm extends Component {
 
     }
 
-    updateValue = (value, type) => {
-        this.props.updateMapCountryCodes(value,type)
-        switch (type) {
-            case 'from':
-                this.setState({ convertFrom: value })
-                break;
-            case 'to':
-                this.setState({ convertTo: value })
-                break;
-            default:
-                break;
-
-        }
-    }
-
     onChange = (value, type) => {
-        this.updateValue(value, type);
+        this.props.updateValue(value, type);
 
     }
 
     onSelect = (value, type) => {
-        this.updateValue(value, type);
-    }
-
-
-    onSwapClick = () => {
-        let { convertFrom, convertTo } = this.state;
-        this.setState({ convertFrom: convertTo, convertTo: convertFrom })
-
+        this.props.updateValue(value, type);
     }
 
     render() {
-        let { convertFrom, convertTo, apiResponse } = this.state;
+        let {apiResponse} = this.state;
+        let { convertFrom, convertTo } = this.props;
         let { onChange, onSelect } = this
         return (
             <div>
@@ -95,7 +68,7 @@ class ConverterForm extends Component {
 
                 <button onClick={this.requestConversion}>Convert</button>
 
-                <button onClick={this.onSwapClick}>Swap</button>
+                <button onClick={this.props.onSwapClick}>Swap</button>
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
                 {apiResponse !== '' &&
