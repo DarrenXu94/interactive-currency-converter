@@ -6,7 +6,7 @@ class WorldMap extends Component {
 
     render() {
         return (
-            <div>
+            <div onClick={this.props.onMapClick}>
                 <svg
                     width="100%"
                     preserveAspectRatio="xMidYMid meet"

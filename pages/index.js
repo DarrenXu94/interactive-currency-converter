@@ -10,18 +10,26 @@ class Formatter extends Component {
     state = {
         convertFrom: null,
         convertTo: null,
-        selected: []
+        selected: [],
+        countryNames: [],
+        clickCountryFrom: null,
+        clickCountryTo: null,
+        clickTracker: 'from'
     }
 
     concatenateCountryCodes = (from = {}, to = {}) => {
         let fullList = []
+        let countryNames = []
         if (from.hasOwnProperty('CountryCodes')){
             fullList = fullList.concat(from.CountryCodes)
+            countryNames = countryNames.concat(from.CountriesUsing)
         }
         if (to.hasOwnProperty('CountryCodes')){
             fullList = fullList.concat(to.CountryCodes)
+            countryNames = countryNames.concat(to.CountriesUsing)
         }
-        return fullList
+
+        return {fullList, countryNames}
     }
 
     updateSelectedList = () => {
@@ -32,7 +40,7 @@ class Formatter extends Component {
         let convertToCountries = currencyList.find(x => x.CurrencyCode == convertTo)
 
         let listOfCountryCodes = this.concatenateCountryCodes(convertFromCountries, convertToCountries)
-        this.setState({selected: listOfCountryCodes})
+        this.setState({selected: listOfCountryCodes.fullList, countryNames: listOfCountryCodes.countryNames})
     }
 
     updateMapCountryCodes = (value,type) => {
@@ -45,16 +53,42 @@ class Formatter extends Component {
                 break;
             default:
                 break;
-
         }
-        // this.updateSelectedList()
     }
+
+    populateForm = () => {
+        let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
+        console.log(clickCountryFrom, clickCountryTo)
+
+        let currencyList = CurrencySelector.currency_and_countries
+
+        let targetCountry = (clickTracker == 'to') ? clickCountryFrom : clickCountryTo
+
+        let currencyObject = currencyList.find(cur => cur.CountryCodes.includes(targetCountry))
+        let currency = currencyObject.CurrencyCode
+        console.log(currency)
+
+
+    }
+
+    onMapClick = (item) => {
+        let id = item.target.id
+        console.log(id)
+        let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
+        if (clickTracker === 'from') {
+            this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm())
+        } else {
+            this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm())
+        }
+        
+    }
+
     render() {
         return (
             <div>
-                <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes}/>
+                <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes} />
                 {/* <World /> */}
-                <WorldMap selected={this.state.selected} />
+                <WorldMap selected={this.state.selected} onMapClick={this.onMapClick} />
                 <style jsx>
                     {` 
         font-family: 'PT Sans', sans-serif;
