@@ -4,6 +4,7 @@ var axios = require("axios");
 
 import AutocompleteWrapper from './AutoCompleteWrapper'
 import StepConvertor from './StepConvertor'
+import PropTypes from 'prop-types';
 
 
 
@@ -41,6 +42,7 @@ class ConverterForm extends Component {
     }
 
     updateValue = (value, type) => {
+        this.props.updateMapCountryCodes(value,type)
         switch (type) {
             case 'from':
                 this.setState({ convertFrom: value })
@@ -106,3 +108,7 @@ class ConverterForm extends Component {
 }
 
 export default ConverterForm;
+
+ConverterForm.propTypes = {
+    updateMapCountryCodes: PropTypes.func
+}

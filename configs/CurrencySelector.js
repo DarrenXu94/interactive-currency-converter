@@ -4,6 +4,11 @@ let currency_list = all_currency.map(res => {
     return {CurrencyCode: res.CurrencyCode, CurrencyName: res.CurrencyName}
 })
 
+let currency_and_countries = all_currency.map(res => {
+    return {CurrencyCode: res.CurrencyCode, CurrencyName: res.CurrencyName, CountryCodes: res.CountryCodes, CountriesUsing: res.CountriesUsing}
+})
+
 module.exports = {
-    currency_list
+    currency_list,
+    currency_and_countries
 }
