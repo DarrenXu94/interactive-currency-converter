@@ -1056,21 +1056,21 @@ svg {
   background-color: #252529;
   stroke: #eee; 
   stroke-width: 1;
-  fill: #2eaacd;
+  fill: #5b768a;
   -webkit-animation: mymove 4s infinite; 
   animation: mymove 4s infinite;
   }
   @-webkit-keyframes mymove {
-   0% {stroke-width: 1; fill: #2eaacd;}
-   50% {stroke-width: 2; fill: #41b8da;}
-   100% {stroke-width: 1; fill: #2eaacd;}
+   0% {stroke-width: 1; fill: #7395ae;}
+   50% {stroke-width: 2; fill: #65859c;}
+   100% {stroke-width: 1; fill: #7395ae;}
 
  }
  
  @keyframes mymove {
-   0% {stroke-width: 1; fill: #2eaacd;}
-   50% {stroke-width: 2; fill: #41b8da;}
-   100% {stroke-width: 1; fill: #2eaacd;}
+   0% {stroke-width: 1; fill: #7395ae;}
+   50% {stroke-width: 2; fill: #65859c;}
+   100% {stroke-width: 1; fill: #7395ae;}
  }
 
   svg path:hover {
@@ -1078,7 +1078,7 @@ svg {
 
   }
   .highlight {
-    fill: red;
+    fill: #c3ddef;
   
  }
   `}
