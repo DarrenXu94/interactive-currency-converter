@@ -64,27 +64,34 @@ class Formatter extends Component {
         let targetCountry = (clickTracker == 'to') ? clickCountryFrom : clickCountryTo
 
         let currencyObject = currencyList.find(cur => cur.CountryCodes.includes(targetCountry))
-        let currency = currencyObject.CurrencyCode
-        switch(tracker){
-            case('from'): 
-                this.setState({convertFrom: currency}, () => this.updateSelectedList())
-                break;
-            case('to'):
-                this.setState({convertTo: currency}, () => this.updateSelectedList())
-                break;
-            default:
-                break;    
+        try {
+
+            let currency = currencyObject.CurrencyCode
+            switch(tracker){
+                case('from'): 
+                    this.setState({convertFrom: currency}, () => this.updateSelectedList())
+                    break;
+                case('to'):
+                    this.setState({convertTo: currency}, () => this.updateSelectedList())
+                    break;
+                default:
+                    break;    
+            }
+        } catch(e) {
+            console.log('Did not click on a country')
         }
+        
     }
 
     onMapClick = (item) => {
         let id = item.target.id
-        let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
+        let {clickTracker} = this.state;
         if (clickTracker === 'from') {
             this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm('from'))
         } else {
             this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm('to'))
         }
+        
     }
 
     updateValue = (value, type) => {
