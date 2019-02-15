@@ -1,4 +1,3 @@
-import World from '../components/World'
 import WorldMap from '../components/WorldMap'
 import ConverterForm from '../components/ConverterForm'
 import Head from '../components/Head'
