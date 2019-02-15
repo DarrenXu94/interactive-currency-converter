@@ -14,10 +14,12 @@ class WorldMap extends Component {
     }
 
     render() {
+        let alignCenter = {textAlign: 'center'}
         return (
             <div>
                 {this.state.loaded ?
                     <div onClick={this.props.onMapClick}>
+                        {this.props.clickTracker == 'from' ? <h1 style={alignCenter}>Choose a country to convert from</h1> : <h1 style={alignCenter}>Choose a country to convert to</h1>}
                         <svg
                             width="100%"
                             preserveAspectRatio="xMidYMid meet"

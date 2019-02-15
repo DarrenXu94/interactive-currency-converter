@@ -86,11 +86,14 @@ class Formatter extends Component {
     onMapClick = (item) => {
         let id = item.target.id
         let {clickTracker} = this.state;
-        if (clickTracker === 'from') {
-            this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm('from'))
-        } else {
-            this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm('to'))
+        if (id !== '') {
+            if (clickTracker === 'from') {
+                this.setState({clickCountryFrom: id, clickTracker: 'to'}, () => this.populateForm('from'))
+            } else {
+                this.setState({clickCountryTo: id, clickTracker: 'from'}, () => this.populateForm('to'))
+            }
         }
+        
         
     }
 
@@ -114,7 +117,7 @@ class Formatter extends Component {
 
     }
     render() {
-        let {convertFrom, convertTo} = this.state
+        let { convertFrom, convertTo, clickTracker } = this.state
         return (
             <div>
                 <ConverterForm updateMapCountryCodes={this.updateMapCountryCodes} convertFrom={convertFrom} convertTo={convertTo} 
@@ -122,7 +125,7 @@ class Formatter extends Component {
                 onSwapClick={this.onSwapClick}
                 />
                 {/* <World /> */}
-                <WorldMap selected={this.state.selected} onMapClick={this.onMapClick} />
+                <WorldMap selected={this.state.selected} onMapClick={this.onMapClick} clickTracker={clickTracker}/>
                 <style jsx>
                     {` 
 	                font-family:Arial;
