@@ -1054,47 +1054,55 @@ class WorldMap extends Component {
                         </svg>
                         <style jsx>
                             {`
-width: 1000px;
+                            width: 1000px;
+                            margin: auto;
 
-@media(max-width: 560px) {
-   width: 400px;
+                            @media(max-width: 560px) {
+                            width: 400px;
+                            }
 
-}
+                            @media(max-width: 760px) {
+                                width: 500px;
+                            }
 
-@media(max-width: 960px) {
-   width: 600px;
-}
+                            @media(max-width: 960px) {
+                            width: 600px;
+                            }
 
-svg {
-  background-color: #252529;
-  stroke: #eee; 
-  stroke-width: 1;
-  fill: #5b768a;
-  -webkit-animation: mymove 4s infinite; 
-  animation: mymove 4s infinite;
-  }
-  @-webkit-keyframes mymove {
-   0% {stroke-width: 1; fill: #7395ae;}
-   50% {stroke-width: 2; fill: #65859c;}
-   100% {stroke-width: 1; fill: #7395ae;}
+                            @media(max-width: 1260px) {
+                                width: 700px;
+                            }
 
- }
- 
- @keyframes mymove {
-   0% {stroke-width: 1; fill: #7395ae;}
-   50% {stroke-width: 2; fill: #65859c;}
-   100% {stroke-width: 1; fill: #7395ae;}
- }
+                            svg {
+                            background-color: #252529;
+                            stroke: #eee; 
+                            stroke-width: 1;
+                            fill: #5b768a;
+                            -webkit-animation: mymove 4s infinite; 
+                            animation: mymove 4s infinite;
+                            }
+                            @-webkit-keyframes mymove {
+                            0% {stroke-width: 1; fill: #7395ae;}
+                            50% {stroke-width: 2; fill: #65859c;}
+                            100% {stroke-width: 1; fill: #7395ae;}
 
-  svg path:hover {
-   stroke-width: 3;
+                            }
+                            
+                            @keyframes mymove {
+                            0% {stroke-width: 1; fill: #7395ae;}
+                            50% {stroke-width: 2; fill: #65859c;}
+                            100% {stroke-width: 1; fill: #7395ae;}
+                            }
 
-  }
-  .highlight {
-    fill: #c3ddef;
-  
- }
-  `}
+                            svg path:hover {
+                            stroke-width: 3;
+
+                            }
+                            .highlight {
+                                fill: #c3ddef;
+                            
+                            }
+                            `}
                         </style>
                     </div> : 'Loading'}
             </div>
