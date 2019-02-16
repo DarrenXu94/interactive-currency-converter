@@ -21,10 +21,6 @@ function concatenateCountryCodes (from = {}, to = {}) {
     return fullList
 }
 
-// findCurrencyCodeFromCountryCode('AU')
-
-// let res = findCountryFromCurrencyCode('AED')
-// console.log(res)
 module.exports = {
     findCountryFromCurrencyCode,
     findCurrencyCodeFromCountryCode,

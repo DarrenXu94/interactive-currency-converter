@@ -1,51 +1,43 @@
 import React, { Component } from 'react';
-// import Currency from '../api/Currency'
-var axios = require("axios");
 
 import AutocompleteWrapper from './AutoCompleteWrapper'
 import StepConvertor from './StepConvertor'
-// import PropTypes from 'prop-types';
+
+import FetchConversion from '../api/FetchConversion'
 
 class ConverterForm extends Component {
-
     state = {
-        apiResponse: ''
-    }
-
-
-    fetchConversionData = async (from, to) => {
-        let url;
-        if (process.env.NODE_ENV === 'development') {
-            url = `/convert/${from}/${to}`
-        } else {
-            url = `https://currency-convertor.netlify.com/.netlify/functions/requestSample?base=${from}&target=${to}`
-        }
-        return await axios.get(url)
+        rate: 1,
+        fromValue: 1,
+        toValue: ''
     }
 
     requestConversion = async () => {
         let { convertFrom, convertTo } = this.props;
+        let { fromValue } = this.state;
+
         if (convertFrom !== '' && convertTo !== '') {
-            let data = await this.fetchConversionData(convertFrom, convertTo)
+            let data = await FetchConversion(convertFrom, convertTo)
             console.log(data)
-            this.setState({ apiResponse: JSON.stringify(data.data) })
+            let rate = JSON.stringify(data.data.rates[convertTo])
+            let resultToValue = parseFloat(fromValue) * parseFloat(rate)
+            this.setState({ rate, toValue: resultToValue })
         }
-
-    }
-
-    onChange = (value, type) => {
-        this.props.updateValue(value, type);
-
     }
 
     onSelect = (value, type) => {
         this.props.updateValue(value, type);
     }
 
+    handleInputChange = (event) => {
+        let calculatedToValue = event.target.value * this.state.rate
+        this.setState({fromValue: event.target.value, toValue: calculatedToValue})
+    }
+
     render() {
-        let { apiResponse } = this.state;
+        let { toValue, fromValue } = this.state;
         let { convertFrom, convertTo } = this.props;
-        let { onChange, onSelect } = this
+        let { onSelect } = this
         return (
             <div>
                 <h1>
@@ -53,27 +45,26 @@ class ConverterForm extends Component {
                 </h1>
                 <label>Choose a currency to convert from</label>
                 <br />
-                <AutocompleteWrapper onSelectParent={onSelect} value={convertFrom} onChange={onChange} type={'from'} />
+                <AutocompleteWrapper onSelectParent={onSelect} value={convertFrom} onChange={onSelect} type={'from'} />
                 <br />
-
                 <br />
-
                 <label>Choose a currency to convert to</label>
                 <br />
-                <AutocompleteWrapper onSelectParent={onSelect} value={convertTo} onChange={onChange} type={'to'} />
+                <AutocompleteWrapper onSelectParent={onSelect} value={convertTo} onChange={onSelect} type={'to'} />
                 <br />
                 <br />
-
                 <button className="myButton" onClick={this.requestConversion}>Convert</button>
 
                 <button className="myButton" onClick={this.props.onSwapClick}>Swap</button>
 
                 <h2>Converting {convertFrom} to {convertTo}</h2>
-                {apiResponse !== '' &&
-                    <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} />
-                }
-                {/* <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} /> */}
-
+                <StepConvertor 
+                    convertFrom={convertFrom} 
+                    convertTo={convertTo} 
+                    handleChange={this.handleInputChange}
+                    toValue={toValue}
+                    fromValue={fromValue}
+                />
                 <style jsx>
                     {`
                         .myButton {
@@ -102,7 +93,6 @@ class ConverterForm extends Component {
                             position:relative;
                             top:1px;
                         }
-
                         label {
                             padding-left: 0.5rem;
                         }
@@ -115,7 +105,3 @@ class ConverterForm extends Component {
 }
 
 export default ConverterForm;
-
-// ConverterForm.propTypes = {
-//     updateMapCountryCodes: PropTypes.func
-// }
