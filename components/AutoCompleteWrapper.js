@@ -48,7 +48,9 @@ class AutoCompleteWrapper extends Component {
                             background: isHighlighted ? '#c3ddef' : '#7395ae', 
                             cursor: 'pointer', 
                             fontFamily:'Arial',
-                            lineHeight: '1.3rem'
+                            lineHeight: '1.3rem',
+                            textAlign: 'left',
+                            paddingLeft:'0.5rem'
                             }}>
                             {item.CurrencyCode} - {item.CurrencyName}
                         </div>

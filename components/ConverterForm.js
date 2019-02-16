@@ -67,6 +67,7 @@ class ConverterForm extends Component {
                 />
                 <style jsx>
                     {`
+                    text-align: center;                        
                         .myButton {
                             -moz-box-shadow: 0px 1px 0px 0px #1c1b18;
                             -webkit-box-shadow: 0px 1px 0px 0px #1c1b18;
