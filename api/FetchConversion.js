@@ -1,7 +1,7 @@
 var axios = require("axios");
 
-fetchConversionData = async (from, to) => {
-    let url;
+export default async (from, to) => {
+        let url;
     if (process.env.NODE_ENV === 'development') {
         url = `/convert/${from}/${to}`
     } else {
@@ -10,4 +10,3 @@ fetchConversionData = async (from, to) => {
     return await axios.get(url)
 }
 
-module.exports = fetchConversionData
