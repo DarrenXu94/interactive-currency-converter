@@ -4,9 +4,7 @@ var axios = require("axios");
 
 import AutocompleteWrapper from './AutoCompleteWrapper'
 import StepConvertor from './StepConvertor'
-import PropTypes from 'prop-types';
-
-
+// import PropTypes from 'prop-types';
 
 class ConverterForm extends Component {
 
@@ -118,6 +116,6 @@ class ConverterForm extends Component {
 
 export default ConverterForm;
 
-ConverterForm.propTypes = {
-    updateMapCountryCodes: PropTypes.func
-}
+// ConverterForm.propTypes = {
+//     updateMapCountryCodes: PropTypes.func
+// }

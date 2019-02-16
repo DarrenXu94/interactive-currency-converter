@@ -10,11 +10,23 @@ function findCurrencyCodeFromCountryCode(countryCode){
     return currencyList.find(cur => cur.CountryCodes.includes(countryCode))
 }
 
-findCurrencyCodeFromCountryCode('AU')
+function concatenateCountryCodes (from = {}, to = {}) {
+    let fullList = []
+    if (from.hasOwnProperty('CountryCodes')){
+        fullList = fullList.concat(from.CountryCodes)
+    }
+    if (to.hasOwnProperty('CountryCodes')){
+        fullList = fullList.concat(to.CountryCodes)
+    }
+    return fullList
+}
+
+// findCurrencyCodeFromCountryCode('AU')
 
 // let res = findCountryFromCurrencyCode('AED')
 // console.log(res)
 module.exports = {
     findCountryFromCurrencyCode,
-    findCurrencyCodeFromCountryCode
+    findCurrencyCodeFromCountryCode,
+    concatenateCountryCodes
 }
