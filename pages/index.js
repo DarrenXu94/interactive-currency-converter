@@ -3,14 +3,13 @@ import ConverterForm from '../components/ConverterForm'
 import Head from '../components/Head'
 import React, { Component } from 'react';
 
-import CurrencySelector from '../configs/CurrencySelector'
+import countryCurrencyConverter from '../helpers/countryCurrencyConverter'
 
 class Formatter extends Component {
     state = {
         convertFrom: '',
         convertTo: '',
         selected: [],
-        countryNames: [],
         clickCountryFrom: null,
         clickCountryTo: null,
         clickTracker: 'from'
@@ -18,28 +17,24 @@ class Formatter extends Component {
 
     concatenateCountryCodes = (from = {}, to = {}) => {
         let fullList = []
-        let countryNames = []
         if (from.hasOwnProperty('CountryCodes')){
             fullList = fullList.concat(from.CountryCodes)
-            countryNames = countryNames.concat(from.CountriesUsing)
         }
         if (to.hasOwnProperty('CountryCodes')){
             fullList = fullList.concat(to.CountryCodes)
-            countryNames = countryNames.concat(to.CountriesUsing)
         }
 
-        return {fullList, countryNames}
+        return fullList
     }
 
     updateSelectedList = () => {
         let {convertFrom, convertTo} = this.state
-        let currencyList = CurrencySelector.currency_and_countries
 
-        let convertFromCountries = currencyList.find(x => x.CurrencyCode == convertFrom)
-        let convertToCountries = currencyList.find(x => x.CurrencyCode == convertTo)
+        let convertFromCountries = countryCurrencyConverter.findCountryFromCurrencyCode(convertFrom)
+        let convertToCountries = countryCurrencyConverter.findCountryFromCurrencyCode(convertTo)
 
         let listOfCountryCodes = this.concatenateCountryCodes(convertFromCountries, convertToCountries)
-        this.setState({selected: listOfCountryCodes.fullList, countryNames: listOfCountryCodes.countryNames})
+        this.setState({selected: listOfCountryCodes})
     }
 
     updateMapCountryCodes = (value,type) => {
@@ -58,11 +53,9 @@ class Formatter extends Component {
     populateForm = (tracker) => {
         let {clickCountryFrom, clickCountryTo, clickTracker} = this.state;
 
-        let currencyList = CurrencySelector.currency_and_countries
-
         let targetCountry = (clickTracker == 'to') ? clickCountryFrom : clickCountryTo
 
-        let currencyObject = currencyList.find(cur => cur.CountryCodes.includes(targetCountry))
+        let currencyObject = countryCurrencyConverter.findCurrencyCodeFromCountryCode(targetCountry)
         try {
 
             let currency = currencyObject.CurrencyCode
