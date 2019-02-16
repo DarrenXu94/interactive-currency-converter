@@ -10,8 +10,10 @@ function matchCurrencyToTerm(currency, value) {
 }
 
 function renderInput(props) {
+    let inputStyle = {color: '#252529', lineHeight: '1.2', fontSize: '16px', height: '1.2rem', padding: '0.3rem 20px 0.3rem 20px', outline: 'none'}
+
     return <div>
-            <input style={{color: '#252529', lineHeight: '1.2', fontSize: '16px', height: '1.2rem', padding: '0.3rem 20px 0.3rem 20px', outline: 'none'}} {...props} />
+            <input style={inputStyle} {...props} />
             <style jsx>
         {`
             border-radius: 20px;

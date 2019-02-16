@@ -74,6 +74,8 @@ class ConverterForm extends Component {
                 {apiResponse !== '' &&
                     <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} />
                 }
+                {/* <StepConvertor convertFrom={convertFrom} convertTo={convertTo} apiResponse={apiResponse} /> */}
+
                 <style jsx>
                     {`
                         .myButton {
