@@ -3,7 +3,7 @@ const https = require('https');
 function httpGetAsync(from,to)
 {
 return new Promise((res,rej) => {
-
+    console.log(process.env.API_KEY)
     https.get(`https://api.currencystack.io/currency?base=${from}&target=${to}&apikey=${process.env.API_KEY}`, (resp) => {
         let data = '';
         
